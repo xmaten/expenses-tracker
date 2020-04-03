@@ -1,5 +1,8 @@
-import React from 'react';
+import React from "react";
+import { Button } from "antd";
 
 export const App = () => (
-  <h1>Expenses Tracker</h1>
-)
+  <>
+    <Button type="primary">Button</Button>
+  </>
+);
