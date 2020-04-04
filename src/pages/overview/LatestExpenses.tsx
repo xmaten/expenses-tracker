@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Typography, Avatar } from 'antd'
+import { Row, Col, Typography, Avatar, Calendar } from 'antd'
 
 const { Title, Paragraph } = Typography
 
@@ -55,6 +55,10 @@ export const LatestExpenses = () => (
           </Col>
         </Row>
       ))}
+
+      <Row style={{ marginTop: '50px' }}>
+        <Calendar fullscreen={false} />
+      </Row>
     </Col>
   </Row>
 )
