@@ -1,8 +1,15 @@
 import React from "react";
-import { Button } from "antd";
+import { Route, Router, Switch } from "react-router-dom";
+
+import { history } from "utils/history";
+import { Overview } from "pages/Overview";
 
 export const App = () => (
   <>
-    <Button type="primary">Button</Button>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={Overview} />
+      </Switch>
+    </Router>
   </>
 );
