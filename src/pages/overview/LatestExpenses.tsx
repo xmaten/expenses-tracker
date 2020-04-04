@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Typography, Avatar } from 'antd'
 
-const { Title, Paragraph, Text } = Typography
+const { Title, Paragraph } = Typography
 
 const expensesList = [
   {
