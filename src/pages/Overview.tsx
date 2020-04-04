@@ -3,6 +3,8 @@ import { Layout } from 'antd'
 
 import { Nav } from 'components/nav/Nav'
 
+import { LatestExpenses } from './overview/LatestExpenses'
+
 const { Header, Sider, Content } = Layout
 
 export const Overview = () => (
@@ -12,7 +14,9 @@ export const Overview = () => (
     </Header>
     <Layout>
       <Content>Content</Content>
-      <Sider>Sider</Sider>
+      <Sider theme="light" width={500}>
+        <LatestExpenses />
+      </Sider>
     </Layout>
   </Layout>
 )
