@@ -17,7 +17,7 @@ export const Overview = () => (
       <Content>
         <MainContent />
       </Content>
-      <Sider theme="light" width={500}>
+      <Sider theme="light" width={350}>
         <LatestExpenses />
       </Sider>
     </Layout>

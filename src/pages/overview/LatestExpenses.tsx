@@ -33,10 +33,10 @@ export const LatestExpenses = () => (
 
       {expensesList.map((item) => (
         <Row style={{ marginTop: '50px' }} key={item.id}>
-          <Col span={4}>
+          <Col span={6}>
             <Avatar shape="square" size={64} />
           </Col>
-          <Col span={16}>
+          <Col span={12}>
             <Row>
               <Col>
                 <Title level={3}>{item.name}</Title>
