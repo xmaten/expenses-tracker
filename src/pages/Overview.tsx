@@ -1,3 +1,3 @@
-import React from "react";
+import React from 'react'
 
-export const Overview = () => <h1>Overview</h1>;
+export const Overview = () => <h1>Overview</h1>

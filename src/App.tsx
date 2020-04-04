@@ -1,8 +1,8 @@
-import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import React from 'react'
+import { Route, Router, Switch } from 'react-router-dom'
 
-import { history } from "utils/history";
-import { Overview } from "pages/Overview";
+import { history } from 'utils/history'
+import { Overview } from 'pages/Overview'
 
 export const App = () => (
   <>
@@ -12,4 +12,4 @@ export const App = () => (
       </Switch>
     </Router>
   </>
-);
+)
