@@ -8,18 +8,20 @@ import { MainContent } from './overview/MainContent'
 
 const { Header, Sider, Content } = Layout
 
-export const Overview = () => (
-  <Layout>
-    <Header>
-      <Nav />
-    </Header>
+export const Overview = () => {
+  return (
     <Layout>
-      <Content>
-        <MainContent />
-      </Content>
-      <Sider theme="light" width={350}>
-        <LatestExpenses />
-      </Sider>
+      <Header>
+        <Nav />
+      </Header>
+      <Layout>
+        <Content>
+          <MainContent />
+        </Content>
+        <Sider theme="light" width={350}>
+          <LatestExpenses />
+        </Sider>
+      </Layout>
     </Layout>
-  </Layout>
-)
+  )
+}

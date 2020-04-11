@@ -3,13 +3,16 @@ import { Route, Router, Switch } from 'react-router-dom'
 
 import { history } from 'utils/history'
 import { Overview } from 'pages/Overview'
+import { StateProvider } from 'store/store'
 
 export const App = () => (
   <>
-    <Router history={history}>
-      <Switch>
-        <Route exact path="/" component={Overview} />
-      </Switch>
-    </Router>
+    <StateProvider>
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/" component={Overview} />
+        </Switch>
+      </Router>
+    </StateProvider>
   </>
 )
