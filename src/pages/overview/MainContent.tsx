@@ -67,10 +67,10 @@ export const MainContent = () => {
       </Row>
 
       <Row style={{ marginTop: '30px' }}>
-        <Col span={15}>
+        <Col span={13}>
           <LinearChart />
         </Col>
-        <Col span={9}>
+        <Col span={11}>
           <PieChart />
         </Col>
       </Row>

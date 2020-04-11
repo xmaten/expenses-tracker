@@ -35,7 +35,7 @@ const data = [
 ]
 
 export const LinearChart = () => (
-  <Chart width={900} height={500} data={data}>
+  <Chart width={750} height={500} data={data}>
     <Axis name="value" />
     <Geom type="line" position="date*value" color="date" />
   </Chart>
