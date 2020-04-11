@@ -1,25 +1,12 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Row, Col, Typography, Avatar, Calendar } from 'antd'
 
-import { ExpensesApi } from 'api/expenses'
 import { store } from 'store/store'
-import { ActionTypes } from 'store/actionTypes'
 
 const { Title, Paragraph } = Typography
 
 export const LatestExpenses = () => {
-  const { state, dispatch } = useContext(store)
-
-  useEffect(() => {
-    const getExpenses = async () => {
-      const { data } = await ExpensesApi.getExpenses()
-      const notNullValues = data.filter((item) => item)
-
-      dispatch({ type: ActionTypes.GET_EXPENSES, payload: notNullValues })
-    }
-
-    getExpenses()
-  }, [dispatch])
+  const { state } = useContext(store)
 
   return (
     <Row>
@@ -28,7 +15,7 @@ export const LatestExpenses = () => {
           <Title level={2}>Latest expenses</Title>
         </Typography>
 
-        {state.expenses.map((item: any) => (
+        {state.expenses.slice(0, 3).map((item: any) => (
           <Row style={{ marginTop: '50px' }} key={item.name}>
             <Col span={6}>
               <Avatar shape="square" size={64} />
