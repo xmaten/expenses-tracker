@@ -13,7 +13,7 @@ export const LatestExpenses = () => {
   useEffect(() => {
     const getExpenses = async () => {
       const { data } = await ExpensesApi.getExpenses()
-      const notNullValues = data.filter((item: any) => item)
+      const notNullValues = data.filter((item) => item)
 
       dispatch({ type: ActionTypes.GET_EXPENSES, payload: notNullValues })
     }
