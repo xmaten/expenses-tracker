@@ -1,11 +1,15 @@
 import React from 'react'
-import { Menu, Row, Col } from 'antd'
+import { Menu, Row, Col, Typography } from 'antd'
 import { NavLink } from 'react-router-dom'
 
+const { Title } = Typography
+
 export const Nav = () => (
-  <Row type="flex" align="middle">
+  <Row type="flex" align="middle" style={{ height: '100%' }}>
     <Col span={16}>
-      <NavLink to="/">ExpensesTracker</NavLink>
+      <Title level={3} style={{ marginBottom: 0, color: '#fff' }}>
+        ExpensesTracker
+      </Title>
     </Col>
 
     <Col span={8}>
