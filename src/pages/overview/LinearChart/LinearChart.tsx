@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Chart, Axis, Geom } from 'bizcharts'
+import { getDate } from 'date-fns'
 
 import { store } from 'store/store'
+import { Expense } from 'api/expenses.model'
 
 interface ChartData {
   value: number
@@ -12,10 +14,10 @@ export const LinearChart = () => {
   const [chartData, setChartData] = useState<ChartData[]>([])
   const { state } = useContext(store)
 
-  const parseApiData = (data: any) => {
-    const parsedData = data.map((item: any) => ({
+  const parseApiData = (data: Expense[]) => {
+    const parsedData = data.map((item) => ({
       value: Number(item.price),
-      date: Number(item.date.split('.')[0]),
+      date: getDate(new Date(item.date)),
     }))
     setChartData(parsedData)
   }
