@@ -3,7 +3,8 @@ import { Layout } from 'antd'
 
 import { Nav } from 'components/nav/Nav'
 import { ActionTypes } from 'store/actionTypes'
-import { ExpensesApi } from 'api/expenses'
+import { ExpensesApi } from 'api/expenses/expenses'
+import { RevenuesApi } from 'api/revenues/revenues'
 import { store } from 'store/store'
 
 import { LatestExpenses } from './overview/LatestExpenses'
@@ -22,7 +23,15 @@ export const Overview = () => {
       dispatch({ type: ActionTypes.GET_EXPENSES, payload: notNullValues })
     }
 
+    const getRevenues = async () => {
+      const { data } = await RevenuesApi.getRevenues()
+      const notNullValues = data.filter((item) => item)
+
+      dispatch({ type: ActionTypes.GET_REVENUES, payload: notNullValues })
+    }
+
     getExpenses()
+    getRevenues()
   }, [dispatch])
 
   return (

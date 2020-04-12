@@ -3,7 +3,7 @@ import { Chart, Axis, Geom } from 'bizcharts'
 import { getDate } from 'date-fns'
 
 import { store } from 'store/store'
-import { Expense } from 'api/expenses.model'
+import { Expense } from 'api/expenses/expenses.model'
 
 interface ChartData {
   value: number

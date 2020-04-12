@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Row, Col, Typography, Button, Select } from 'antd'
 import { PlusSquareFilled } from '@ant-design/icons'
+
+import { store } from 'store/store'
+import { Expense } from 'api/expenses/expenses.model'
+import { Revenue } from 'api/revenues/revenues.model'
 
 import { LinearChart } from './LinearChart/LinearChart'
 import { PieChart } from './PieChart/PieChart'
@@ -10,7 +14,32 @@ const { Title } = Typography
 const { Option } = Select
 
 export const MainContent = () => {
+  const { state } = useContext(store)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [expenses, setExpenses] = useState(0)
+  const [revenues, setRevenues] = useState(0)
+  const [total, setTotal] = useState(0)
+
+  const calculateExpenses = (expensesData: Expense[]) => {
+    const exp = expensesData.reduce((acc, curr) => acc + curr.price, 0)
+    setExpenses(exp)
+  }
+
+  const calculateRevenues = (revenuesData: Revenue[]) => {
+    const rev = revenuesData.reduce((acc, curr) => acc + curr.price, 0)
+    setRevenues(rev)
+  }
+
+  const calculateTotal = (totalExpenses: number, totalRevenues: number) => {
+    const tot = -totalExpenses + totalRevenues
+    setTotal(tot)
+  }
+
+  useEffect(() => {
+    calculateExpenses(state.expenses)
+    calculateRevenues(state.revenues)
+    calculateTotal(expenses, revenues)
+  }, [expenses, revenues, state.expenses, state.revenues])
 
   return (
     <>
@@ -46,15 +75,15 @@ export const MainContent = () => {
       <Row type="flex" style={{ paddingLeft: '24px' }}>
         <Col span={6}>
           <Title level={3}>Expenses</Title>
-          <Title level={4}>- 5000</Title>
+          <Title level={4}>- {expenses}</Title>
         </Col>
         <Col span={6}>
           <Title level={3}>Revenus</Title>
-          <Title level={4}>4000</Title>
+          <Title level={4}>{revenues}</Title>
         </Col>
         <Col span={6}>
           <Title level={3}>Total</Title>
-          <Title level={4}>- 1000</Title>
+          <Title level={4}>{total}</Title>
         </Col>
         <Col span={6}>
           <Title level={3}>Display</Title>
