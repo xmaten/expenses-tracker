@@ -16,7 +16,7 @@ export const LinearChart = () => {
 
   const parseApiData = (data: Expense[]) => {
     const parsedData = data.map((item) => ({
-      value: Number(item.price),
+      value: Number(item.value),
       date: getDate(new Date(item.date)),
     }))
     setChartData(parsedData)
