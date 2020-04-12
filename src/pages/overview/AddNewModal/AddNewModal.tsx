@@ -1,5 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Modal, Row, Col, Typography, Select, Input, InputNumber } from 'antd'
+import { v4 as uuidv4 } from 'uuid'
+
+import { NewExpense } from 'api/expenses/expenses.model'
+import { NewRevenue } from 'api/revenues/revenues.model'
+import { ExpensesApi } from 'api/expenses/expenses'
+import { store } from 'store/store'
+import { ActionTypes } from 'store/actionTypes'
+import { RevenuesApi } from 'api/revenues/revenues'
 
 type Props = {
   title: string
@@ -12,20 +20,64 @@ const { Title } = Typography
 const { Option } = Select
 
 export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel }) => {
+  const { dispatch } = useContext(store)
   const [nameVal, setNameVal] = useState('')
   const [typeVal, setTypeVal] = useState('expense')
   const [valueVal, setValueVal] = useState<number | undefined>(undefined)
   const [categoryVal, setCategoryVal] = useState('food')
 
-  const onSubmit = () => {
-    const formData = {
-      name: nameVal,
-      type: typeVal,
-      value: valueVal,
-      category: categoryVal,
-    }
+  const addExpense = async (expenseData: NewExpense) => {
+    dispatch({ type: ActionTypes.UPDATE_DATA_START })
 
-    console.log(formData)
+    try {
+      await ExpensesApi.addExpenses(expenseData)
+
+      dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
+      onOk(false)
+    } catch {
+      dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
+      console.log('error')
+    }
+  }
+
+  const addRevenue = async (revenueData: NewRevenue) => {
+    dispatch({ type: ActionTypes.UPDATE_DATA_START })
+
+    try {
+      await RevenuesApi.addReveune(revenueData)
+
+      dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
+      onOk(false)
+    } catch {
+      dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
+      console.log('error')
+    }
+  }
+
+  const onSubmit = () => {
+    if (typeVal === 'expense') {
+      uuidv4()
+      const baseData = {
+        [uuidv4().toString()]: {
+          name: nameVal,
+          value: valueVal,
+          date: new Date().toISOString(),
+          category: categoryVal,
+        },
+      }
+
+      addExpense(baseData)
+    } else if (typeVal === 'revenue') {
+      const baseData = {
+        [uuidv4().toString()]: {
+          name: nameVal,
+          value: valueVal,
+          date: new Date().toISOString(),
+        },
+      }
+
+      addRevenue(baseData)
+    }
   }
 
   return (

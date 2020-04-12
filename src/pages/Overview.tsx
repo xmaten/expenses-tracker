@@ -18,16 +18,32 @@ export const Overview = () => {
   useEffect(() => {
     const getExpenses = async () => {
       const { data } = await ExpensesApi.getExpenses()
-      const notNullValues = data.filter((item) => item)
+      const dataWithId = []
+      for (const val in data) {
+        const valuesWithId = {
+          ...data[val],
+          id: val,
+        }
 
-      dispatch({ type: ActionTypes.GET_EXPENSES, payload: notNullValues })
+        dataWithId.push(valuesWithId)
+      }
+
+      dispatch({ type: ActionTypes.GET_EXPENSES, payload: dataWithId })
     }
 
     const getRevenues = async () => {
       const { data } = await RevenuesApi.getRevenues()
-      const notNullValues = data.filter((item) => item)
+      const dataWithId = []
+      for (const val in data) {
+        const valuesWithId = {
+          ...data[val],
+          id: val,
+        }
 
-      dispatch({ type: ActionTypes.GET_REVENUES, payload: notNullValues })
+        dataWithId.push(valuesWithId)
+      }
+
+      dispatch({ type: ActionTypes.GET_REVENUES, payload: dataWithId })
     }
 
     getExpenses()

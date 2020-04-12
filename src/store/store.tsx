@@ -13,11 +13,17 @@ type Action = {
 type State = {
   expenses: Expense[]
   revenues: Revenue[]
+  isLoading: boolean
+  isError: boolean
+  isSuccess: boolean
 }
 
 const initialState: any = {
   expenses: [],
   revenues: [],
+  isLoading: false,
+  isError: false,
+  isSuccess: false,
 }
 
 const store = createContext(initialState)
@@ -35,6 +41,27 @@ const StateProvider: React.FC = ({ children }) => {
         return {
           ...state,
           revenues: action.payload,
+        }
+      case ActionTypes.UPDATE_DATA_START:
+        return {
+          ...state,
+          isLoading: true,
+          isError: false,
+          isSuccess: false,
+        }
+      case ActionTypes.UPDATE_DATA_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          isError: false,
+          isSuccess: true,
+        }
+      case ActionTypes.UPDATE_DATA_FAIL:
+        return {
+          ...state,
+          isLoading: false,
+          isError: true,
+          isSuccess: false,
         }
       default:
         throw new Error()
