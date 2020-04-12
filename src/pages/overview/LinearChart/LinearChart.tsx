@@ -19,6 +19,7 @@ export const LinearChart = () => {
       value: Number(item.value),
       date: getDate(new Date(item.date)),
     }))
+    console.log(parsedData)
     setChartData(parsedData)
   }
 
