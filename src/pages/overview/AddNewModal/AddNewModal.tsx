@@ -36,7 +36,6 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
       onOk(false)
     } catch {
       dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
-      console.log('error')
     }
   }
 
@@ -50,7 +49,6 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
       onOk(false)
     } catch {
       dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
-      console.log('error')
     }
   }
 
