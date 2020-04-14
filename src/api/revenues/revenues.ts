@@ -2,12 +2,15 @@ import { AxiosResponse } from 'axios'
 
 import httpClient from 'utils/httpClient'
 
-import { Revenue } from './revenues.model'
+import { Revenue, NewRevenue } from './revenues.model'
+
+const url = '/revenues.json'
 
 export const RevenuesApi = {
   getRevenues(): Promise<AxiosResponse<Revenue[]>> {
-    const url = '/revenues.json'
-
     return httpClient.get(url)
+  },
+  addReveune(newRevenue: NewRevenue): Promise<AxiosResponse<any>> {
+    return httpClient.patch(url, newRevenue)
   },
 }

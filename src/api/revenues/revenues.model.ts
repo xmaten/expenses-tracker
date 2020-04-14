@@ -1,4 +1,12 @@
 export type Revenue = {
   name: string
-  price: number
+  value: number
+}
+
+export type NewRevenue = {
+  [id: string]: {
+    name: string
+    value: number | undefined
+    date: string
+  }
 }

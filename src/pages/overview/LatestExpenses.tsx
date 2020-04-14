@@ -1,12 +1,18 @@
 import React, { useContext } from 'react'
 import { Row, Col, Typography, Avatar, Calendar } from 'antd'
+import { compareDesc, format } from 'date-fns'
 
 import { store } from 'store/store'
+import { Expense } from 'api/expenses/expenses.model'
 
 const { Title, Paragraph } = Typography
 
 export const LatestExpenses = () => {
   const { state } = useContext(store)
+
+  const getLatestExpenses = (data: Expense[]) => {
+    return data.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3)
+  }
 
   return (
     <Row>
@@ -15,7 +21,7 @@ export const LatestExpenses = () => {
           <Title level={2}>Latest expenses</Title>
         </Typography>
 
-        {state.expenses.slice(0, 3).map((item: any) => (
+        {getLatestExpenses(state.expenses).map((item) => (
           <Row style={{ marginTop: '50px' }} key={item.name}>
             <Col span={6}>
               <Avatar shape="square" size={64} />
@@ -29,13 +35,13 @@ export const LatestExpenses = () => {
               <Row>
                 <Col>
                   <Paragraph type="secondary" style={{ marginTop: '-10px' }}>
-                    {item.date}
+                    {format(new Date(item.date), 'MM-dd-yyyy')}
                   </Paragraph>
                 </Col>
               </Row>
             </Col>
             <Col span={4}>
-              <Title level={4}>{item.price}</Title>
+              <Title level={4}>{item.value}</Title>
             </Col>
           </Row>
         ))}
