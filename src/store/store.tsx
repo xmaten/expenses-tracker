@@ -32,14 +32,29 @@ const { Provider } = store
 const StateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer((state: State, action: Action) => {
     switch (action.type) {
+      case ActionTypes.GET_DATA_START:
+        return {
+          ...state,
+          isLoading: true,
+        }
+      case ActionTypes.GET_DATA_ERROR:
+        return {
+          ...state,
+          isLoading: false,
+          isError: true,
+        }
       case ActionTypes.GET_EXPENSES:
         return {
           ...state,
+          isLoading: false,
+          isError: false,
           expenses: action.payload,
         }
       case ActionTypes.GET_REVENUES:
         return {
           ...state,
+          isLoading: false,
+          isError: false,
           revenues: action.payload,
         }
       case ActionTypes.UPDATE_DATA_START:
