@@ -3,9 +3,8 @@ import { Layout } from 'antd'
 
 import { Nav } from 'components/nav/Nav'
 import { ActionTypes } from 'store/actionTypes'
-import { ExpensesApi } from 'api/expenses/expenses'
-import { RevenuesApi } from 'api/revenues/revenues'
 import { store } from 'store/store'
+import { getExpenses, getRevenues } from 'store/thunks'
 
 import { LatestExpenses } from './overview/LatestExpenses'
 import { MainContent } from './overview/MainContent'
@@ -16,38 +15,15 @@ export const Overview = () => {
   const { dispatch } = useContext(store)
 
   useEffect(() => {
-    const getExpenses = async () => {
-      const { data } = await ExpensesApi.getExpenses()
-      const dataWithId = []
-      for (const val in data) {
-        const valuesWithId = {
-          ...data[val],
-          id: val,
-        }
+    const getData = async () => {
+      const expenses = await getExpenses()
+      const revenues = await getRevenues()
 
-        dataWithId.push(valuesWithId)
-      }
-
-      dispatch({ type: ActionTypes.GET_EXPENSES, payload: dataWithId })
+      dispatch({ type: ActionTypes.GET_EXPENSES, payload: expenses })
+      dispatch({ type: ActionTypes.GET_REVENUES, payload: revenues })
     }
 
-    const getRevenues = async () => {
-      const { data } = await RevenuesApi.getRevenues()
-      const dataWithId = []
-      for (const val in data) {
-        const valuesWithId = {
-          ...data[val],
-          id: val,
-        }
-
-        dataWithId.push(valuesWithId)
-      }
-
-      dispatch({ type: ActionTypes.GET_REVENUES, payload: dataWithId })
-    }
-
-    getExpenses()
-    getRevenues()
+    getData()
   }, [dispatch])
 
   return (
