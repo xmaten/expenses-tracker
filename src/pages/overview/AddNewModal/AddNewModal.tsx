@@ -16,7 +16,7 @@ type Props = {
   onCancel: (isVisible: boolean) => void
 }
 
-const { Title } = Typography
+const { Title, Paragraph } = Typography
 const { Option } = Select
 
 export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel }) => {
@@ -25,6 +25,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
   const [typeVal, setTypeVal] = useState('expense')
   const [valueVal, setValueVal] = useState<number | undefined>(undefined)
   const [categoryVal, setCategoryVal] = useState('food')
+  const [isBeingSubmitted, setIsBeingSubmitted] = useState(false)
 
   const addExpense = async (expenseData: NewExpense) => {
     dispatch({ type: ActionTypes.UPDATE_DATA_START })
@@ -52,29 +53,42 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
     }
   }
 
+  const validate = () => {
+    if (nameVal === '' || !valueVal) {
+      return false
+    }
+
+    return true
+  }
+
   const onSubmit = () => {
-    if (typeVal === 'expense') {
-      uuidv4()
-      const baseData = {
-        [uuidv4().toString()]: {
-          name: nameVal,
-          value: valueVal,
-          date: new Date().toISOString(),
-          category: categoryVal,
-        },
-      }
+    setIsBeingSubmitted(true)
+    const isValid = validate()
 
-      addExpense(baseData)
-    } else if (typeVal === 'revenue') {
-      const baseData = {
-        [uuidv4().toString()]: {
-          name: nameVal,
-          value: valueVal,
-          date: new Date().toISOString(),
-        },
-      }
+    if (isValid) {
+      if (typeVal === 'expense') {
+        uuidv4()
+        const baseData = {
+          [uuidv4().toString()]: {
+            name: nameVal,
+            value: valueVal,
+            date: new Date().toISOString(),
+            category: categoryVal,
+          },
+        }
 
-      addRevenue(baseData)
+        addExpense(baseData)
+      } else if (typeVal === 'revenue') {
+        const baseData = {
+          [uuidv4().toString()]: {
+            name: nameVal,
+            value: valueVal,
+            date: new Date().toISOString(),
+          },
+        }
+
+        addRevenue(baseData)
+      }
     }
   }
 
@@ -134,6 +148,11 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
             />
           </Col>
         </Row>
+        {!validate() && isBeingSubmitted ? (
+          <Row style={{ marginTop: '20px', marginBottom: '0' }}>
+            <Paragraph style={{ color: 'red', marginBottom: '0' }}>Form is not valid</Paragraph>
+          </Row>
+        ) : null}
       </Modal>
     </form>
   )
