@@ -41,7 +41,7 @@ export const LatestExpenses = () => {
               </Row>
             </Col>
             <Col span={4}>
-              <Title level={4}>{item.price}</Title>
+              <Title level={4}>{item.value}</Title>
             </Col>
           </Row>
         ))}

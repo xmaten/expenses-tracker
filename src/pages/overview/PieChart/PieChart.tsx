@@ -7,7 +7,7 @@ import { Expense } from 'api/expenses/expenses.model'
 
 interface ChartData {
   category: string
-  price: number
+  value: number
 }
 
 export const PieChart = () => {
@@ -17,7 +17,7 @@ export const PieChart = () => {
 
   const parseApiData = (data: Expense[]) => {
     const parsedData = data.map((item) => ({
-      price: Number(item.price),
+      value: Number(item.value),
       category: item.category,
       month: 'April',
     }))
@@ -50,7 +50,7 @@ export const PieChart = () => {
             const dv = new DataView()
             dv.source(data).transform({
               type: 'percent',
-              field: 'price',
+              field: 'value',
               dimension: 'category',
               as: 'percent',
             })

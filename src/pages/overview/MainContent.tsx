@@ -21,12 +21,12 @@ export const MainContent = () => {
   const [total, setTotal] = useState(0)
 
   const calculateExpenses = (expensesData: Expense[]) => {
-    const exp = expensesData.reduce((acc, curr) => acc + curr.price, 0)
+    const exp = expensesData.reduce((acc, curr) => acc + curr.value, 0)
     setExpenses(exp)
   }
 
   const calculateRevenues = (revenuesData: Revenue[]) => {
-    const rev = revenuesData.reduce((acc, curr) => acc + curr.price, 0)
+    const rev = revenuesData.reduce((acc, curr) => acc + curr.value, 0)
     setRevenues(rev)
   }
 
