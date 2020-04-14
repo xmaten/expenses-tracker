@@ -8,6 +8,7 @@ import { ExpensesApi } from 'api/expenses/expenses'
 import { store } from 'store/store'
 import { ActionTypes } from 'store/actionTypes'
 import { RevenuesApi } from 'api/revenues/revenues'
+import { getExpenses, getRevenues } from '../../../store/thunks'
 
 type Props = {
   title: string
@@ -34,6 +35,9 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
       await ExpensesApi.addExpenses(expenseData)
 
       dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
+
+      const updatedExpenses = await getExpenses()
+      dispatch({ type: ActionTypes.GET_EXPENSES, payload: updatedExpenses })
       onOk(false)
     } catch {
       dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
@@ -47,6 +51,10 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
       await RevenuesApi.addReveune(revenueData)
 
       dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
+
+      const updatedRevenues = getRevenues()
+      dispatch({ type: ActionTypes.GET_REVENUES, payload: updatedRevenues })
+
       onOk(false)
     } catch {
       dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
