@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { Modal, Row, Col, Typography, Select, Input, InputNumber, DatePicker } from 'antd'
+import { Modal, Row, Col, Typography, Select, Input, InputNumber } from 'antd'
 import { v4 as uuidv4 } from 'uuid'
-import { format } from 'date-fns'
+import dayjs from 'dayjs'
 
 import { NewExpense } from 'api/expenses/expenses.model'
 import { NewRevenue } from 'api/revenues/revenues.model'
@@ -10,6 +10,7 @@ import { store } from 'store/store'
 import { ActionTypes } from 'store/actionTypes'
 import { RevenuesApi } from 'api/revenues/revenues'
 import { getExpenses, getRevenues } from '../../../store/thunks'
+import Calendar from 'components/dataInput/Calendar'
 
 type Props = {
   title: string
@@ -27,7 +28,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
   const [typeVal, setTypeVal] = useState('expense')
   const [valueVal, setValueVal] = useState<number | undefined>(undefined)
   const [categoryVal, setCategoryVal] = useState('food')
-  const [dateVal, setDateVal] = useState(new Date())
+  const [dateVal, setDateVal] = useState(dayjs())
   const [isBeingSubmitted, setIsBeingSubmitted] = useState(false)
 
   const addExpense = async (expenseData: NewExpense) => {
@@ -71,8 +72,8 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
     return true
   }
 
-  const onDateChange = (value: any) => {
-    console.log(value)
+  const onDateSelect = (value: dayjs.Dayjs) => {
+    setDateVal(value)
   }
 
   const onSubmit = () => {
@@ -86,7 +87,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           [uuidv4().toString()]: {
             name: nameVal,
             value: valueVal,
-            date: new Date().toISOString(),
+            date: dateVal.toISOString(),
             category: categoryVal,
           },
         }
@@ -97,7 +98,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           [uuidv4().toString()]: {
             name: nameVal,
             value: valueVal,
-            date: new Date().toISOString(),
+            date: dateVal.toISOString(),
           },
         }
 
@@ -166,7 +167,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
         <Row style={{ marginTop: '50px' }}>
           <Col span={12}>
             <Title level={3}>Date</Title>
-            <DatePicker onChange={onDateChange} />
+            <Calendar fullscreen={false} value={dateVal} onSelect={onDateSelect} />
           </Col>
         </Row>
         {!validate() && isBeingSubmitted ? (
