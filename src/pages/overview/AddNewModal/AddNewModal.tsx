@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { Modal, Row, Col, Typography, Select, Input, InputNumber } from 'antd'
+import { Modal, Row, Col, Typography, Select, Input, InputNumber, DatePicker } from 'antd'
 import { v4 as uuidv4 } from 'uuid'
+import { format } from 'date-fns'
 
 import { NewExpense } from 'api/expenses/expenses.model'
 import { NewRevenue } from 'api/revenues/revenues.model'
@@ -26,6 +27,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
   const [typeVal, setTypeVal] = useState('expense')
   const [valueVal, setValueVal] = useState<number | undefined>(undefined)
   const [categoryVal, setCategoryVal] = useState('food')
+  const [dateVal, setDateVal] = useState(new Date())
   const [isBeingSubmitted, setIsBeingSubmitted] = useState(false)
 
   const addExpense = async (expenseData: NewExpense) => {
@@ -67,6 +69,10 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
     }
 
     return true
+  }
+
+  const onDateChange = (value: any) => {
+    console.log(value)
   }
 
   const onSubmit = () => {
@@ -155,6 +161,11 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
               onChange={(val) => setValueVal(val)}
             />
           </Col>
+        </Row>
+
+        <Row style={{ marginTop: '50px' }}>
+          <Title level={3}>Date</Title>
+          <DatePicker onChange={onDateChange} />
         </Row>
         {!validate() && isBeingSubmitted ? (
           <Row style={{ marginTop: '20px', marginBottom: '0' }}>
