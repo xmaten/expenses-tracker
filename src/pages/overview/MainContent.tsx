@@ -5,6 +5,7 @@ import { PlusSquareFilled } from '@ant-design/icons'
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
 import { Revenue } from 'api/revenues/revenues.model'
+import { getDataFromXDaysAgo } from 'utils/getDataFromXDaysAgo'
 
 import { LinearChart } from './LinearChart/LinearChart'
 import { PieChart } from './PieChart/PieChart'
@@ -19,6 +20,7 @@ export const MainContent = () => {
   const [expenses, setExpenses] = useState(0)
   const [revenues, setRevenues] = useState(0)
   const [total, setTotal] = useState(0)
+  const [timePeriod, setTimePeriod] = useState('month')
 
   const calculateExpenses = (expensesData: Expense[]) => {
     const exp = expensesData.reduce((acc, curr) => acc + curr.value, 0)
@@ -35,11 +37,28 @@ export const MainContent = () => {
     setTotal(tot)
   }
 
-  useEffect(() => {
-    calculateExpenses(state.expenses)
-    calculateRevenues(state.revenues)
+  const recalculateDataFromXDaysAgo = (
+    expensesData: Expense[],
+    revenuesData: Revenue[],
+    timePeriod: 'month' | 'week' | 'year',
+  ) => {
+    const expensesFromXDaysAgo = getDataFromXDaysAgo(expensesData, timePeriod)
+    const revenuesFromXDaysAgo = getDataFromXDaysAgo(revenuesData, timePeriod)
+
+    calculateExpenses(expensesFromXDaysAgo)
+    calculateRevenues(revenuesFromXDaysAgo)
     calculateTotal(expenses, revenues)
-  }, [expenses, revenues, state.expenses, state.revenues])
+  }
+
+  useEffect(() => {
+    recalculateDataFromXDaysAgo(state.expenses, state.revenues, 'month')
+  }, [state.expenses, state.revenues])
+
+  useEffect(() => {
+    if (timePeriod === 'month' || timePeriod === 'year' || timePeriod === 'week') {
+      recalculateDataFromXDaysAgo(state.expenses, state.revenues, timePeriod)
+    }
+  }, [timePeriod])
 
   return (
     <>
@@ -87,7 +106,11 @@ export const MainContent = () => {
         </Col>
         <Col span={6}>
           <Title level={3}>Display</Title>
-          <Select defaultValue="month" style={{ width: '70%' }}>
+          <Select
+            defaultValue={timePeriod}
+            style={{ width: '70%' }}
+            onChange={(value) => setTimePeriod(value)}
+          >
             <Option value="year">Year</Option>
             <Option value="month">Month</Option>
             <Option value="week">Week</Option>
