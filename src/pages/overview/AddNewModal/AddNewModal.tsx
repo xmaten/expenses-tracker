@@ -114,7 +114,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
         onOk={() => onSubmit()}
         onCancel={() => onCancel(false)}
       >
-        <Row type="flex" justify="space-between">
+        <Row justify="space-between">
           <Col span={12}>
             <Title level={3}>Type</Title>
             <Select
@@ -141,7 +141,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
             </Select>
           </Col>
         </Row>
-        <Row style={{ marginTop: '50px' }} type="flex" justify="space-between">
+        <Row style={{ marginTop: '50px' }} justify="space-between">
           <Col span={12}>
             <Title level={3}>Name</Title>
             <Input
@@ -164,8 +164,10 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
         </Row>
 
         <Row style={{ marginTop: '50px' }}>
-          <Title level={3}>Date</Title>
-          <DatePicker onChange={onDateChange} />
+          <Col span={12}>
+            <Title level={3}>Date</Title>
+            <DatePicker onChange={onDateChange} />
+          </Col>
         </Row>
         {!validate() && isBeingSubmitted ? (
           <Row style={{ marginTop: '20px', marginBottom: '0' }}>

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 const { Title } = Typography
 
 export const Nav = () => (
-  <Row type="flex" align="middle" style={{ height: '100%' }}>
+  <Row align="middle" style={{ height: '100%' }}>
     <Col span={16}>
       <Title level={3} style={{ marginBottom: 0, color: '#fff' }}>
         ExpensesTracker

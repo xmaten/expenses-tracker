@@ -58,7 +58,7 @@ export const MainContent = () => {
         </Col>
 
         <Col span={6}>
-          <Row type="flex" align="middle" justify="center">
+          <Row align="middle" justify="center">
             <Button
               style={{ fontWeight: 'bold' }}
               type="primary"
@@ -72,7 +72,7 @@ export const MainContent = () => {
         </Col>
       </Row>
 
-      <Row type="flex" style={{ paddingLeft: '24px' }}>
+      <Row style={{ paddingLeft: '24px' }}>
         <Col span={6}>
           <Title level={3}>Expenses</Title>
           <Title level={4}>- {expenses}</Title>
