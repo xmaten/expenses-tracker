@@ -25,8 +25,8 @@ export const PieChart = () => {
   }
 
   useEffect(() => {
-    parseApiData(state.expenses)
-  }, [state.expenses])
+    parseApiData(state.expensesFromXDaysAgo)
+  }, [state.expensesFromXDaysAgo])
 
   return (
     <div>

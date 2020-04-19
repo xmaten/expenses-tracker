@@ -39,8 +39,8 @@ export const LinearChart = () => {
   }
 
   useEffect(() => {
-    parseApiData(state.expenses)
-  }, [state.expenses])
+    parseApiData(state.expensesFromXDaysAgo)
+  }, [state.expensesFromXDaysAgo])
 
   return (
     <Chart width={750} height={500} data={chartData}>

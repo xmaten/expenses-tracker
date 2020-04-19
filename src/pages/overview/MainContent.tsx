@@ -6,6 +6,7 @@ import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
 import { Revenue } from 'api/revenues/revenues.model'
 import { getDataFromXDaysAgo } from 'utils/getDataFromXDaysAgo'
+import { ActionTypes } from 'store/actionTypes'
 
 import { LinearChart } from './LinearChart/LinearChart'
 import { PieChart } from './PieChart/PieChart'
@@ -16,6 +17,7 @@ const { Option } = Select
 
 export const MainContent = () => {
   const { state } = useContext(store)
+  const { dispatch } = useContext(store)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [expenses, setExpenses] = useState(0)
   const [revenues, setRevenues] = useState(0)
@@ -48,6 +50,9 @@ export const MainContent = () => {
     calculateExpenses(expensesFromXDaysAgo)
     calculateRevenues(revenuesFromXDaysAgo)
     calculateTotal(expenses, revenues)
+
+    dispatch({ type: ActionTypes.SET_EXPENSES_FROM_X_DAYS_AGO, payload: expensesFromXDaysAgo })
+    dispatch({ type: ActionTypes.SET_REVENUES_FROM_X_DAYS_AGO, payload: revenuesFromXDaysAgo })
   }
 
   useEffect(() => {

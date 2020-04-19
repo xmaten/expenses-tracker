@@ -12,7 +12,9 @@ type Action = {
 
 type State = {
   expenses: Expense[]
+  expensesFromXDaysAgo: Expense[]
   revenues: Revenue[]
+  revenuesFromXDaysAgo: Revenue[]
   isLoading: boolean
   isError: boolean
   isSuccess: boolean
@@ -20,7 +22,9 @@ type State = {
 
 const initialState: any = {
   expenses: [],
+  expensesFromXDaysAgo: [],
   revenues: [],
+  revenuesFromXDaysAgo: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -50,12 +54,22 @@ const StateProvider: React.FC = ({ children }) => {
           isError: false,
           expenses: action.payload,
         }
+      case ActionTypes.SET_EXPENSES_FROM_X_DAYS_AGO:
+        return {
+          ...state,
+          expensesFromXDaysAgo: action.payload,
+        }
       case ActionTypes.GET_REVENUES:
         return {
           ...state,
           isLoading: false,
           isError: false,
           revenues: action.payload,
+        }
+      case ActionTypes.SET_REVENUES_FROM_X_DAYS_AGO:
+        return {
+          ...state,
+          revenuesFromXDaysAgo: action.payload,
         }
       case ActionTypes.UPDATE_DATA_START:
         return {
