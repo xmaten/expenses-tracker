@@ -19,7 +19,7 @@ export const LatestExpenses = () => {
   const { state, dispatch } = useContext(store)
 
   const getLatestExpenses = (data: Expense[]) => {
-    return data.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3)
+    return data.sort((a, b) => dayjs(b.date).diff(a.date)).slice(0, 3)
   }
 
   const onDateSelect = (value: dayjs.Dayjs) => {

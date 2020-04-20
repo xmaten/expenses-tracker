@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Chart, Axis, Geom } from 'bizcharts'
-import { getDate } from 'date-fns'
+import dayjs from 'dayjs'
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
@@ -17,7 +17,7 @@ export const LinearChart = () => {
   const parseApiData = (data: Expense[]) => {
     const parsedData = data.map((item) => ({
       value: Number(item.value),
-      date: getDate(new Date(item.date)),
+      date: dayjs(item.date).date(),
     }))
 
     // TODO: Finish that
