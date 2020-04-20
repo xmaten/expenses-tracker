@@ -9,8 +9,9 @@ import { ExpensesApi } from 'api/expenses/expenses'
 import { store } from 'store/store'
 import { ActionTypes } from 'store/actionTypes'
 import { RevenuesApi } from 'api/revenues/revenues'
-import { getExpenses, getRevenues } from '../../../store/thunks'
+import { getExpenses, getRevenues } from 'store/thunks'
 import Calendar from 'components/dataInput/Calendar'
+import { disableFutureDates } from 'utils/disableFutureDates'
 
 type Props = {
   title: string
@@ -107,10 +108,6 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
     }
   }
 
-  const disabledDate = (current: any) => {
-    return current && current.valueOf() > Date.now()
-  }
-
   return (
     <form onSubmit={onSubmit}>
       <Modal
@@ -175,7 +172,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
               fullscreen={false}
               value={dateVal}
               onSelect={onDateSelect}
-              disabledDate={disabledDate}
+              disabledDate={disableFutureDates}
             />
           </Col>
         </Row>
