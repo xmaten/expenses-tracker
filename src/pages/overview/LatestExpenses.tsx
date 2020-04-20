@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Row, Col, Typography, Avatar } from 'antd'
-import { compareDesc, format } from 'date-fns'
 
 import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
@@ -10,6 +9,7 @@ import dayjs, { Dayjs } from 'dayjs'
 import { ActionTypes } from 'store/actionTypes'
 
 import { ExpensesFromGivenDayModal } from './ExpensesFromGivenDayModal/ExpensesFromGivenDayModal'
+import { dateFormats } from '../../utils/dateFormats'
 
 const { Title, Paragraph } = Typography
 
@@ -38,7 +38,7 @@ export const LatestExpenses = () => {
   return (
     <Row>
       <ExpensesFromGivenDayModal
-        title={`Expenses from ${dayjs(selectedDate).format('DD.MM.YYYY')}`}
+        title={`Expenses from ${dayjs(selectedDate).format(dateFormats.fullDate)}`}
         isVisible={isExpensesModalVisible}
         onOk={setIsExpensesModalVisible}
         onCancel={setIsExpensesModalVisible}
@@ -62,7 +62,7 @@ export const LatestExpenses = () => {
               <Row>
                 <Col>
                   <Paragraph type="secondary" style={{ marginTop: '-10px' }}>
-                    {format(new Date(item.date), 'MM-dd-yyyy')}
+                    {dayjs(item.date).format(dateFormats.fullDate)}
                   </Paragraph>
                 </Col>
               </Row>
