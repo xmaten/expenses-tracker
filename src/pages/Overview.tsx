@@ -36,11 +36,11 @@ export const Overview = () => {
       <Header>
         <Nav />
       </Header>
-      <Layout>
+      <Layout style={{ minHeight: 'calc(100vh - 64px)' }}>
         {state.isError ? <Alert message="There was an error" type="error" /> : null}
 
         {state.isLoading ? (
-          <Spin />
+          <Spin style={{ marginTop: '50px' }} />
         ) : (
           <>
             <Content>

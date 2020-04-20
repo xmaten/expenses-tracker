@@ -21,19 +21,19 @@ export const LinearChart = () => {
     }))
 
     // TODO: Finish that
-    const combinedValuesFromSameDay = parsedData.map((item, index) => {
-      let value = item.value
-      if (parsedData[index + 1]) {
-        if (item.date === parsedData[index + 1].date) {
-          value = item.value + parsedData[index + 1].value
-        }
-      }
-
-      return {
-        date: item.date,
-        value,
-      }
-    })
+    // const combinedValuesFromSameDay = parsedData.map((item, index) => {
+    //   let value = item.value
+    //   if (parsedData[index + 1]) {
+    //     if (item.date === parsedData[index + 1].date) {
+    //       value = item.value + parsedData[index + 1].value
+    //     }
+    //   }
+    //
+    //   return {
+    //     date: item.date,
+    //     value,
+    //   }
+    // })
 
     setChartData(parsedData)
   }
