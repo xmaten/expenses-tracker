@@ -21,8 +21,6 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
 }) => {
   const { state } = useContext(store)
 
-  console.log(state.expensesFromGivenDay)
-
   return (
     <Modal
       title={title}
