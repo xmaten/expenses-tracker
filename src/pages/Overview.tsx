@@ -12,8 +12,7 @@ import { MainContent } from './overview/MainContent'
 const { Header, Sider, Content } = Layout
 
 export const Overview = () => {
-  const { dispatch } = useContext(store)
-  const { state } = useContext(store)
+  const { dispatch, state } = useContext(store)
 
   useEffect(() => {
     const getData = async () => {

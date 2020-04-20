@@ -16,8 +16,7 @@ const { Title } = Typography
 const { Option } = Select
 
 export const MainContent = () => {
-  const { state } = useContext(store)
-  const { dispatch } = useContext(store)
+  const { state, dispatch } = useContext(store)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [expenses, setExpenses] = useState(0)
   const [revenues, setRevenues] = useState(0)

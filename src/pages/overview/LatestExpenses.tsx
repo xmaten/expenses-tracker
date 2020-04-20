@@ -1,33 +1,43 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Row, Col, Typography, Avatar } from 'antd'
 import { compareDesc, format } from 'date-fns'
 
 import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
-import { disableFutureDates } from '../../utils/disableFutureDates'
+import { disableFutureDates } from 'utils/disableFutureDates'
 import dayjs, { Dayjs } from 'dayjs'
-import { ExpensesFromGivenDay } from './ExpensesFromGivenDayModal/ExpensesFromGivenDay'
+import { ActionTypes } from 'store/actionTypes'
+
+import { ExpensesFromGivenDayModal } from './ExpensesFromGivenDayModal/ExpensesFromGivenDayModal'
 
 const { Title, Paragraph } = Typography
 
 export const LatestExpenses = () => {
   const [isExpensesModalVisible, setIsExpensesModalVisible] = useState(false)
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs())
-  const { state } = useContext(store)
+  const { state, dispatch } = useContext(store)
 
   const getLatestExpenses = (data: Expense[]) => {
     return data.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 3)
   }
 
   const onDateSelect = (value: dayjs.Dayjs) => {
-    setIsExpensesModalVisible(true)
     setSelectedDate(value)
+    setIsExpensesModalVisible(true)
   }
+
+  useEffect(() => {
+    const sameDayExpenses = state.expenses.filter((item: Expense) =>
+      dayjs(item.date).isSame(selectedDate, 'day'),
+    )
+
+    dispatch({ type: ActionTypes.SET_EXPENSES_FROM_GIVEN_DAY, payload: sameDayExpenses })
+  }, [selectedDate])
 
   return (
     <Row>
-      <ExpensesFromGivenDay
+      <ExpensesFromGivenDayModal
         title={`Expenses from ${dayjs(selectedDate).format('DD.MM.YYYY')}`}
         isVisible={isExpensesModalVisible}
         onOk={setIsExpensesModalVisible}

@@ -15,6 +15,7 @@ type State = {
   expensesFromXDaysAgo: Expense[]
   revenues: Revenue[]
   revenuesFromXDaysAgo: Revenue[]
+  expensesFromGivenDay: Expense[]
   isLoading: boolean
   isError: boolean
   isSuccess: boolean
@@ -25,6 +26,7 @@ const initialState: any = {
   expensesFromXDaysAgo: [],
   revenues: [],
   revenuesFromXDaysAgo: [],
+  expensesFromGivenDay: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -91,6 +93,11 @@ const StateProvider: React.FC = ({ children }) => {
           isLoading: false,
           isError: true,
           isSuccess: false,
+        }
+      case ActionTypes.SET_EXPENSES_FROM_GIVEN_DAY:
+        return {
+          ...state,
+          expensesFromGivenDay: action.payload,
         }
       default:
         throw new Error()
