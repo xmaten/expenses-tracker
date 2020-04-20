@@ -107,6 +107,10 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
     }
   }
 
+  const disabledDate = (current: any) => {
+    return current && current.valueOf() > Date.now()
+  }
+
   return (
     <form onSubmit={onSubmit}>
       <Modal
@@ -165,9 +169,14 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
         </Row>
 
         <Row style={{ marginTop: '50px' }}>
-          <Col span={12}>
+          <Col span={24}>
             <Title level={3}>Date</Title>
-            <Calendar fullscreen={false} value={dateVal} onSelect={onDateSelect} />
+            <Calendar
+              fullscreen={false}
+              value={dateVal}
+              onSelect={onDateSelect}
+              disabledDate={disabledDate}
+            />
           </Col>
         </Row>
         {!validate() && isBeingSubmitted ? (
