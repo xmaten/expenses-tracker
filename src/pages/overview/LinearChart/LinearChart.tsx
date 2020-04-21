@@ -20,22 +20,25 @@ export const LinearChart = () => {
       date: dayjs(item.date).date(),
     }))
 
-    // TODO: Finish that
-    // const combinedValuesFromSameDay = parsedData.map((item, index) => {
-    //   let value = item.value
-    //   if (parsedData[index + 1]) {
-    //     if (item.date === parsedData[index + 1].date) {
-    //       value = item.value + parsedData[index + 1].value
-    //     }
-    //   }
-    //
-    //   return {
-    //     date: item.date,
-    //     value,
-    //   }
-    // })
+    const sortedByDate = parsedData.sort((a, b) => a.date - b.date)
+    let dateValuePair: Record<string, number> = {}
 
-    setChartData(parsedData)
+    sortedByDate.forEach((item) => {
+      if (dateValuePair[item.date]) {
+        dateValuePair[item.date] = dateValuePair[item.date] + item.value
+      } else {
+        dateValuePair[item.date] = item.value
+      }
+    })
+
+    const result = Object.keys(dateValuePair).map((key) => {
+      return {
+        date: Number(key),
+        value: dateValuePair[key],
+      }
+    })
+
+    setChartData(result)
   }
 
   useEffect(() => {
