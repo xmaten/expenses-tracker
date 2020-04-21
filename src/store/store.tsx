@@ -21,7 +21,7 @@ type State = {
   isSuccess: boolean
 }
 
-const initialState: any = {
+const initialState = {
   expenses: [],
   expensesFromXDaysAgo: [],
   revenues: [],
@@ -32,7 +32,13 @@ const initialState: any = {
   isSuccess: false,
 }
 
-const store = createContext(initialState)
+const store = createContext<{
+  state: State
+  dispatch: React.Dispatch<any>
+}>({
+  state: initialState,
+  dispatch: () => null,
+})
 const { Provider } = store
 
 const StateProvider: React.FC = ({ children }) => {
