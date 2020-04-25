@@ -23,7 +23,7 @@ export const Overview = () => {
   useEffect(() => {
     const expensesForChosenMonth = fitlerDataForChosenMonth(state.expenses, state.chosenMonth)
     const incomesForChosenMonth = fitlerDataForChosenMonth(state.incomes, state.chosenMonth)
-
+    console.log(expensesForChosenMonth)
     dispatch({ type: ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH, payload: expensesForChosenMonth })
     dispatch({ type: ActionTypes.SET_INCOMES_FOR_CHOSEN_MONTH, payload: incomesForChosenMonth })
   }, [state.expenses, state.incomes])

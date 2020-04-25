@@ -3,7 +3,11 @@ import isBetween from 'dayjs/plugin/isBetween'
 
 dayjs.extend(isBetween)
 
-export const getDataFromXDaysAgo = (data: any, timePeriod: 'month' | 'week' | 'year') => {
+export const getDataFromXDaysAgo = (data: any, timePeriod: 'month' | 'week' | 'year' | null) => {
+  if (!timePeriod) {
+    return data
+  }
+
   const today = dayjs()
   let xDaysAgo = dayjs()
 

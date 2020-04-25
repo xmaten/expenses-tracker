@@ -43,7 +43,7 @@ export const MainContent = () => {
   const recalculateDataFromXDaysAgo = (
     expensesData: Expense[],
     incomesData: Income[],
-    timePeriod: 'month' | 'week' | 'year',
+    timePeriod: 'month' | 'week' | 'year' | null,
   ) => {
     const expensesFromXDaysAgo = getDataFromXDaysAgo(expensesData, timePeriod)
     const incomesFromXDaysAgo = getDataFromXDaysAgo(incomesData, timePeriod)
@@ -57,7 +57,7 @@ export const MainContent = () => {
   }
 
   useEffect(() => {
-    recalculateDataFromXDaysAgo(state.expensesForChosenMonth, state.incomesForChosenMonth, 'month')
+    recalculateDataFromXDaysAgo(state.expensesForChosenMonth, state.incomesForChosenMonth, null)
   }, [state.expensesForChosenMonth, state.incomesForChosenMonth])
 
   useEffect(() => {
