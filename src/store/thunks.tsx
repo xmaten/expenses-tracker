@@ -2,11 +2,11 @@ import { Dispatch } from 'react'
 
 import { ExpensesApi } from 'api/expenses/expenses'
 import { RevenuesApi } from 'api/revenues/revenues'
+import { mergeDataWithId } from 'utils/mergeDataWithId'
+import { NewExpense } from 'api/expenses/expenses.model'
+import { NewRevenue } from 'api/revenues/revenues.model'
 
 import { ActionTypes } from './actionTypes'
-import { mergeDataWithId } from '../utils/mergeDataWithId'
-import { NewExpense } from '../api/expenses/expenses.model'
-import { NewRevenue } from '../api/revenues/revenues.model'
 
 export const getExpenses = async (dispatch: Dispatch<any>) => {
   dispatch({ type: ActionTypes.GET_DATA_START })
