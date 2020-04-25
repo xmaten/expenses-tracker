@@ -55,12 +55,16 @@ export const MainContent = () => {
   }
 
   useEffect(() => {
-    recalculateDataFromXDaysAgo(state.expenses, state.revenues, 'month')
-  }, [state.expenses, state.revenues])
+    recalculateDataFromXDaysAgo(state.expensesForChosenMonth, state.revenuesForChosenMonth, 'month')
+  }, [state.expensesForChosenMonth, state.revenuesForChosenMonth])
 
   useEffect(() => {
     if (timePeriod === 'month' || timePeriod === 'year' || timePeriod === 'week') {
-      recalculateDataFromXDaysAgo(state.expenses, state.revenues, timePeriod)
+      recalculateDataFromXDaysAgo(
+        state.expensesForChosenMonth,
+        state.revenuesForChosenMonth,
+        timePeriod,
+      )
     }
   }, [timePeriod])
 
