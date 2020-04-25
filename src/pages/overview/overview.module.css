@@ -6,7 +6,7 @@
   margin-top: 50px;
 }
 
-.sider-toggle-button {
+.siderToggleButton {
   position: fixed;
   top: 64px;
   right: 0;
@@ -14,8 +14,8 @@
   z-index: 99;
 }
 
-.sider-toggle-button--collapsed {
-  translatex: 0;
+.siderToggleButtonCollapsed {
+  transform: translateX(0);
 }
 
 .sider {
@@ -28,6 +28,6 @@
   overflow: auto;
 }
 
-.sider--collapsed {
+.siderCollapsed {
   transform: translateX(100%);
 }
