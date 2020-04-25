@@ -18,7 +18,7 @@ export const Overview = () => {
   useEffect(() => {
     getExpenses(dispatch)
     getIncomes(dispatch)
-  }, [dispatch])
+  }, [dispatch, state.chosenMonth])
 
   useEffect(() => {
     const expensesForChosenMonth = fitlerDataForChosenMonth(state.expenses, state.chosenMonth)
