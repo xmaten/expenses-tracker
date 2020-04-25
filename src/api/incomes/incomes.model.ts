@@ -1,9 +1,9 @@
-export type Revenue = {
+export type Income = {
   name: string
   value: number
 }
 
-export type NewRevenue = {
+export type NewIncome = {
   [id: string]: {
     name: string
     value: number | undefined

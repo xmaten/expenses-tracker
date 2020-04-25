@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react'
 
 import { Expense } from 'api/expenses/expenses.model'
-import { Revenue } from 'api/revenues/revenues.model'
+import { Income } from 'api/incomes/incomes.model'
 
 import { ActionTypes } from './actionTypes'
 import dayjs from 'dayjs'
@@ -14,9 +14,9 @@ type Action = {
 type State = {
   expenses: Expense[]
   expensesFromXDaysAgo: Expense[]
-  revenues: Revenue[]
-  revenuesForChosenMonth: Revenue[]
-  revenuesFromXDaysAgo: Revenue[]
+  incomes: Income[]
+  incomesForChosenMonth: Income[]
+  incomesFromXDaysAgo: Income[]
   expensesFromGivenDay: Expense[]
   expensesForChosenMonth: Expense[]
   isLoading: boolean
@@ -28,9 +28,9 @@ type State = {
 const initialState = {
   expenses: [],
   expensesFromXDaysAgo: [],
-  revenues: [],
-  revenuesForChosenMonth: [],
-  revenuesFromXDaysAgo: [],
+  incomes: [],
+  incomesForChosenMonth: [],
+  incomesFromXDaysAgo: [],
   expensesFromGivenDay: [],
   expensesForChosenMonth: [],
   isLoading: false,
@@ -74,17 +74,17 @@ const StateProvider: React.FC = ({ children }) => {
           ...state,
           expensesFromXDaysAgo: action.payload,
         }
-      case ActionTypes.GET_REVENUES:
+      case ActionTypes.GET_INCOMES:
         return {
           ...state,
           isLoading: false,
           isError: false,
-          revenues: action.payload,
+          incomes: action.payload,
         }
-      case ActionTypes.SET_REVENUES_FROM_X_DAYS_AGO:
+      case ActionTypes.SET_INCOMES_FROM_X_DAYS_AGO:
         return {
           ...state,
-          revenuesFromXDaysAgo: action.payload,
+          incomesFromXDaysAgo: action.payload,
         }
       case ActionTypes.UPDATE_DATA_START:
         return {
@@ -117,10 +117,10 @@ const StateProvider: React.FC = ({ children }) => {
           ...state,
           expensesForChosenMonth: action.payload,
         }
-      case ActionTypes.SET_REVENUES_FOR_CHOSEN_MONTH:
+      case ActionTypes.SET_INCOMES_FOR_CHOSEN_MONTH:
         return {
           ...state,
-          revenuesForChosenMonth: action.payload,
+          incomesForChosenMonth: action.payload,
         }
       default:
         throw new Error()

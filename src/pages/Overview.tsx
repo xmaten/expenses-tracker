@@ -6,7 +6,7 @@ import { store } from 'store/store'
 
 import { LatestExpenses } from './overview/LatestExpenses'
 import { MainContent } from './overview/MainContent'
-import { getExpenses, getRevenues } from '../store/thunks'
+import { getExpenses, getIncomes } from '../store/thunks'
 import { fitlerDataForChosenMonth } from '../utils/fitlerDataForChosenMonth'
 import { ActionTypes } from '../store/actionTypes'
 
@@ -17,16 +17,16 @@ export const Overview = () => {
 
   useEffect(() => {
     getExpenses(dispatch)
-    getRevenues(dispatch)
+    getIncomes(dispatch)
   }, [dispatch])
 
   useEffect(() => {
     const expensesForChosenMonth = fitlerDataForChosenMonth(state.expenses, state.chosenMonth)
-    const revenuesForChosenMonth = fitlerDataForChosenMonth(state.revenues, state.chosenMonth)
+    const incomesForChosenMonth = fitlerDataForChosenMonth(state.incomes, state.chosenMonth)
 
     dispatch({ type: ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH, payload: expensesForChosenMonth })
-    dispatch({ type: ActionTypes.SET_REVENUES_FOR_CHOSEN_MONTH, payload: revenuesForChosenMonth })
-  }, [state.expenses, state.revenues])
+    dispatch({ type: ActionTypes.SET_INCOMES_FOR_CHOSEN_MONTH, payload: incomesForChosenMonth })
+  }, [state.expenses, state.incomes])
 
   return (
     <Layout>

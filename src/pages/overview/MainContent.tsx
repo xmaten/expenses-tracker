@@ -4,7 +4,7 @@ import { PlusSquareFilled, LeftOutlined, RightOutlined } from '@ant-design/icons
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
-import { Revenue } from 'api/revenues/revenues.model'
+import { Income } from 'api/incomes/incomes.model'
 import { getDataFromXDaysAgo } from 'utils/getDataFromXDaysAgo'
 import { ActionTypes } from 'store/actionTypes'
 
@@ -19,7 +19,7 @@ export const MainContent = () => {
   const { state, dispatch } = useContext(store)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [expenses, setExpenses] = useState(0)
-  const [revenues, setRevenues] = useState(0)
+  const [incomes, setIncomes] = useState(0)
   const [total, setTotal] = useState(0)
   const [timePeriod, setTimePeriod] = useState('month')
 
@@ -28,41 +28,41 @@ export const MainContent = () => {
     setExpenses(exp)
   }
 
-  const calculateRevenues = (revenuesData: Revenue[]) => {
-    const rev = revenuesData.reduce((acc, curr) => acc + curr.value, 0)
-    setRevenues(rev)
+  const calculateIncomes = (incomesData: Income[]) => {
+    const inc = incomesData.reduce((acc, curr) => acc + curr.value, 0)
+    setIncomes(inc)
   }
 
-  const calculateTotal = (totalExpenses: number, totalRevenues: number) => {
-    const tot = -totalExpenses + totalRevenues
+  const calculateTotal = (totalExpenses: number, totalIncomes: number) => {
+    const tot = -totalExpenses + totalIncomes
     setTotal(tot)
   }
 
   const recalculateDataFromXDaysAgo = (
     expensesData: Expense[],
-    revenuesData: Revenue[],
+    incomesData: Income[],
     timePeriod: 'month' | 'week' | 'year',
   ) => {
     const expensesFromXDaysAgo = getDataFromXDaysAgo(expensesData, timePeriod)
-    const revenuesFromXDaysAgo = getDataFromXDaysAgo(revenuesData, timePeriod)
+    const incomesFromXDaysAgo = getDataFromXDaysAgo(incomesData, timePeriod)
 
     calculateExpenses(expensesFromXDaysAgo)
-    calculateRevenues(revenuesFromXDaysAgo)
-    calculateTotal(expenses, revenues)
+    calculateIncomes(incomesFromXDaysAgo)
+    calculateTotal(expenses, incomes)
 
     dispatch({ type: ActionTypes.SET_EXPENSES_FROM_X_DAYS_AGO, payload: expensesFromXDaysAgo })
-    dispatch({ type: ActionTypes.SET_REVENUES_FROM_X_DAYS_AGO, payload: revenuesFromXDaysAgo })
+    dispatch({ type: ActionTypes.SET_INCOMES_FROM_X_DAYS_AGO, payload: incomesFromXDaysAgo })
   }
 
   useEffect(() => {
-    recalculateDataFromXDaysAgo(state.expensesForChosenMonth, state.revenuesForChosenMonth, 'month')
-  }, [state.expensesForChosenMonth, state.revenuesForChosenMonth])
+    recalculateDataFromXDaysAgo(state.expensesForChosenMonth, state.incomesForChosenMonth, 'month')
+  }, [state.expensesForChosenMonth, state.incomesForChosenMonth])
 
   useEffect(() => {
     if (timePeriod === 'month' || timePeriod === 'year' || timePeriod === 'week') {
       recalculateDataFromXDaysAgo(
         state.expensesForChosenMonth,
-        state.revenuesForChosenMonth,
+        state.incomesForChosenMonth,
         timePeriod,
       )
     }
@@ -113,8 +113,8 @@ export const MainContent = () => {
           <Title level={4}>- {expenses}</Title>
         </Col>
         <Col span={6}>
-          <Title level={3}>Revenus</Title>
-          <Title level={4}>{revenues}</Title>
+          <Title level={3}>Incomes</Title>
+          <Title level={4}>{incomes}</Title>
         </Col>
         <Col span={6}>
           <Title level={3}>Total</Title>

@@ -1,10 +1,10 @@
 import { Dispatch } from 'react'
 
 import { ExpensesApi } from 'api/expenses/expenses'
-import { RevenuesApi } from 'api/revenues/revenues'
+import { IncomesApi } from 'api/incomes/incomes'
 import { mergeDataWithId } from 'utils/mergeDataWithId'
 import { NewExpense } from 'api/expenses/expenses.model'
-import { NewRevenue } from 'api/revenues/revenues.model'
+import { NewIncome } from 'api/incomes/incomes.model'
 
 import { ActionTypes } from './actionTypes'
 
@@ -21,13 +21,13 @@ export const getExpenses = async (dispatch: Dispatch<any>) => {
   }
 }
 
-export const getRevenues = async (dispatch: Dispatch<any>) => {
+export const getIncomes = async (dispatch: Dispatch<any>) => {
   dispatch({ type: ActionTypes.GET_DATA_START })
   try {
-    const { data } = await RevenuesApi.getRevenues()
+    const { data } = await IncomesApi.getIncomes()
     const dataWithId = mergeDataWithId(data)
 
-    dispatch({ type: ActionTypes.GET_REVENUES, payload: dataWithId })
+    dispatch({ type: ActionTypes.GET_INCOMES, payload: dataWithId })
   } catch {
     dispatch({ type: ActionTypes.GET_DATA_ERROR })
   }
@@ -47,15 +47,15 @@ export const addExpense = async (expenseData: NewExpense, dispatch: Dispatch<any
   }
 }
 
-export const addRevenue = async (revenueData: NewRevenue, dispatch: Dispatch<any>) => {
+export const addIncome = async (incomeData: NewIncome, dispatch: Dispatch<any>) => {
   dispatch({ type: ActionTypes.UPDATE_DATA_START })
 
   try {
-    await RevenuesApi.addReveune(revenueData)
+    await IncomesApi.addIncome(incomeData)
 
     dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
 
-    await getRevenues(dispatch)
+    await getIncomes(dispatch)
   } catch {
     dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
   }

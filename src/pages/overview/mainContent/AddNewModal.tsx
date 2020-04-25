@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
 
 import { store } from 'store/store'
-import { addExpense, addRevenue } from 'store/thunks'
+import { addExpense, addIncome } from 'store/thunks'
 import Calendar from 'components/dataInput/Calendar'
 import { disableFutureDates } from 'utils/disableFutureDates'
 
@@ -57,7 +57,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
 
         addExpense(baseData, dispatch)
         onOk(false)
-      } else if (typeVal === 'revenue') {
+      } else if (typeVal === 'income') {
         const baseData = {
           [uuidv4().toString()]: {
             name: nameVal,
@@ -66,7 +66,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           },
         }
 
-        addRevenue(baseData, dispatch)
+        addIncome(baseData, dispatch)
         onOk(false)
       }
     }
@@ -89,7 +89,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
               style={{ width: '100%' }}
             >
               <Option value="expense">Expense</Option>
-              <Option value="revenue">Revenue</Option>
+              <Option value="income">Income</Option>
             </Select>
           </Col>
           <Col span={11}>
