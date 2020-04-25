@@ -4,6 +4,7 @@ import { Expense } from 'api/expenses/expenses.model'
 import { Revenue } from 'api/revenues/revenues.model'
 
 import { ActionTypes } from './actionTypes'
+import dayjs from 'dayjs'
 
 type Action = {
   payload: any
@@ -14,22 +15,28 @@ type State = {
   expenses: Expense[]
   expensesFromXDaysAgo: Expense[]
   revenues: Revenue[]
+  revenuesForChosenMonth: Revenue[]
   revenuesFromXDaysAgo: Revenue[]
   expensesFromGivenDay: Expense[]
+  expensesForChosenMonth: Expense[]
   isLoading: boolean
   isError: boolean
   isSuccess: boolean
+  chosenMonth: number
 }
 
 const initialState = {
   expenses: [],
   expensesFromXDaysAgo: [],
   revenues: [],
+  revenuesForChosenMonth: [],
   revenuesFromXDaysAgo: [],
   expensesFromGivenDay: [],
+  expensesForChosenMonth: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
+  chosenMonth: dayjs().month() + 1,
 }
 
 const store = createContext<{
@@ -104,6 +111,16 @@ const StateProvider: React.FC = ({ children }) => {
         return {
           ...state,
           expensesFromGivenDay: action.payload,
+        }
+      case ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH:
+        return {
+          ...state,
+          expensesForChosenMonth: action.payload,
+        }
+      case ActionTypes.SET_REVENUES_FOR_CHOSEN_MONTH:
+        return {
+          ...state,
+          revenuesForChosenMonth: action.payload,
         }
       default:
         throw new Error()

@@ -7,6 +7,8 @@ import { store } from 'store/store'
 import { LatestExpenses } from './overview/LatestExpenses'
 import { MainContent } from './overview/MainContent'
 import { getExpenses, getRevenues } from '../store/thunks'
+import { fitlerDataForChosenMonth } from '../utils/fitlerDataForChosenMonth'
+import { ActionTypes } from '../store/actionTypes'
 
 const { Header, Sider, Content } = Layout
 
@@ -17,6 +19,14 @@ export const Overview = () => {
     getExpenses(dispatch)
     getRevenues(dispatch)
   }, [dispatch])
+
+  useEffect(() => {
+    const expensesForChosenMonth = fitlerDataForChosenMonth(state.expenses, state.chosenMonth)
+    const revenuesForChosenMonth = fitlerDataForChosenMonth(state.revenues, state.chosenMonth)
+
+    dispatch({ type: ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH, payload: expensesForChosenMonth })
+    dispatch({ type: ActionTypes.SET_REVENUES_FOR_CHOSEN_MONTH, payload: revenuesForChosenMonth })
+  }, [state.expenses, state.revenues])
 
   return (
     <Layout>
