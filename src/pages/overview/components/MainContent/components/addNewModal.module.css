@@ -1,0 +1,18 @@
+.select,
+.input {
+  width: 100%;
+}
+
+.row {
+  margin-top: 50px;
+}
+
+.error__wrapper {
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.error__text {
+  color: red;
+  margin-bottom: 0;
+}

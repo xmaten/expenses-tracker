@@ -7,9 +7,10 @@ import { Expense } from 'api/expenses/expenses.model'
 import { disableFutureDates } from 'utils/disableFutureDates'
 import dayjs, { Dayjs } from 'dayjs'
 import { ActionTypes } from 'store/actionTypes'
+import { dateFormats } from 'utils/dateFormats'
 
-import { ExpensesFromGivenDayModal } from './latestExpenses/ExpensesFromGivenDayModal'
-import { dateFormats } from '../../utils/dateFormats'
+import { ExpensesFromGivenDayModal } from './components/ExpensesFromGivenDayModal'
+import styles from './latestExpenses.module.css'
 
 const { Title, Paragraph } = Typography
 
@@ -43,13 +44,13 @@ export const LatestExpenses = () => {
         onOk={setIsExpensesModalVisible}
         onCancel={setIsExpensesModalVisible}
       />
-      <Col span={24} style={{ padding: '24px' }}>
+      <Col span={24} className={styles.header__title}>
         <Typography>
           <Title level={2}>Latest expenses</Title>
         </Typography>
 
         {getLatestExpenses(state.expenses).map((item) => (
-          <Row style={{ marginTop: '50px' }} key={item.name}>
+          <Row className={styles.expenseItem} key={item.name}>
             <Col span={6}>
               <Avatar shape="square" size={64} />
             </Col>
@@ -61,7 +62,7 @@ export const LatestExpenses = () => {
               </Row>
               <Row>
                 <Col>
-                  <Paragraph type="secondary" style={{ marginTop: '-10px' }}>
+                  <Paragraph type="secondary" className={styles.expenseItem__date}>
                     {dayjs(item.date).format(dateFormats.fullDate)}
                   </Paragraph>
                 </Col>
@@ -73,7 +74,7 @@ export const LatestExpenses = () => {
           </Row>
         ))}
 
-        <Row style={{ marginTop: '50px' }}>
+        <Row className={styles.calendarWrapper}>
           <Calendar
             value={selectedDate}
             fullscreen={false}

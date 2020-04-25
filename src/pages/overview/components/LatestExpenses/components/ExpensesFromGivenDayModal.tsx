@@ -4,6 +4,8 @@ import { Col, Modal, Row, Typography, Divider } from 'antd'
 import { Expense } from 'api/expenses/expenses.model'
 import { store } from 'store/store'
 
+import styles from './expensesFromGivenDay.module.css'
+
 type Props = {
   title: string
   isVisible: boolean
@@ -32,7 +34,7 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
       {state.expensesFromGivenDay.length === 0 && (
         <Row>
           <Col span={24}>
-            <Title level={3} style={{ marginTop: 0 }}>
+            <Title level={3} className={styles.header__title}>
               There are no expenses in this day
             </Title>
           </Col>
@@ -41,15 +43,15 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
       {state.expensesFromGivenDay.map((item: Expense) => (
         <Row key={item.name} align="bottom">
           <Col span={12}>
-            <Title type="secondary" level={4} style={{ marginBottom: 0, fontSize: '15px' }}>
+            <Title type="secondary" level={4} className={styles.item__category}>
               {item.category}
             </Title>
-            <Title level={3} style={{ marginTop: 0 }}>
+            <Title level={3} className={styles.item__name}>
               {item.name}
             </Title>
           </Col>
           <Col span={12}>
-            <Title level={3} style={{ marginTop: 0, textAlign: 'right' }}>
+            <Title level={3} className={styles.item__value}>
               {item.value} PLN
             </Title>
           </Col>

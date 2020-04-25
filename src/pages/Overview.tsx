@@ -4,12 +4,13 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
 import { Nav } from 'components/nav/Nav'
 import { store } from 'store/store'
+import { getExpenses, getIncomes } from 'store/thunks'
+import { fitlerDataForChosenMonth } from 'utils/fitlerDataForChosenMonth'
+import { ActionTypes } from 'store/actionTypes'
 
-import { LatestExpenses } from './overview/LatestExpenses'
-import { MainContent } from './overview/MainContent'
-import { getExpenses, getIncomes } from '../store/thunks'
-import { fitlerDataForChosenMonth } from '../utils/fitlerDataForChosenMonth'
-import { ActionTypes } from '../store/actionTypes'
+import { LatestExpenses } from './overview/components/LatestExpenses/LatestExpenses'
+import { MainContent } from './overview/components/MainContent/MainContent'
+import styles from './overview/overview.module.css'
 
 const { Header, Sider, Content } = Layout
 
@@ -35,24 +36,21 @@ export const Overview = () => {
       <Header>
         <Nav />
       </Header>
-      <Layout style={{ minHeight: 'calc(100vh - 64px)' }}>
+      <Layout className={styles.layout}>
         {state.isError ? <Alert message="There was an error" type="error" /> : null}
 
         {state.isLoading ? (
-          <Spin style={{ marginTop: '50px' }} />
+          <Spin className={styles.spin} />
         ) : (
           <>
             <Content>
               <MainContent />
             </Content>
             <Button
-              style={{
-                position: 'fixed',
-                top: '64px',
-                right: 0,
-                transform: `${siderCollapsed ? 'translateX(0)' : 'translateX(-350px)'}`,
-                zIndex: 99,
-              }}
+              className={[
+                styles.siderToggleButton,
+                siderCollapsed ? styles.siderToggleButtonCollapsed : '',
+              ].join(' ')}
               onClick={() => setSiderCollapsed(!siderCollapsed)}
             >
               {siderCollapsed ? <LeftOutlined /> : <RightOutlined />}
@@ -60,15 +58,7 @@ export const Overview = () => {
             <Sider
               theme="light"
               width={350}
-              style={{
-                transform: `${siderCollapsed ? 'translateX(100%)' : 'translateX(0%)'}`,
-                transition: 'transform 0.3s ease',
-                right: 0,
-                top: '64px',
-                overflow: 'auto',
-                height: '100vh',
-                position: 'fixed',
-              }}
+              className={[styles.sider, siderCollapsed ? styles.siderCollapsed : 'test'].join(' ')}
             >
               <LatestExpenses />
             </Sider>

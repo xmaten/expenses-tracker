@@ -1,0 +1,36 @@
+.header {
+  padding: 24px;
+}
+
+.header__month {
+  marginbottom: 0;
+  text-align: center;
+}
+
+.add-new__wrapper {
+  margin-top: 1rem;
+}
+
+.add-new__button {
+  font-weight: bold;
+}
+
+.stats {
+  padding-left: 24px;
+}
+
+.stats__title {
+  margin: 0;
+}
+
+.select {
+  width: 70%;
+}
+
+.charts__wrapper {
+  margin-top: 30px;
+}
+
+.chart__wrapper {
+  overflowx: scroll;
+}

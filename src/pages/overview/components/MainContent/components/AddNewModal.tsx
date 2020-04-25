@@ -8,6 +8,8 @@ import { addExpense, addIncome } from 'store/thunks'
 import Calendar from 'components/dataInput/Calendar'
 import { disableFutureDates } from 'utils/disableFutureDates'
 
+import styles from './addNewModal.module.css'
+
 type Props = {
   title: string
   isVisible: boolean
@@ -86,7 +88,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
             <Select
               defaultValue={typeVal}
               onChange={(val: string) => setTypeVal(val)}
-              style={{ width: '100%' }}
+              className={styles.select}
             >
               <Option value="expense">Expense</Option>
               <Option value="income">Income</Option>
@@ -97,7 +99,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
             <Select
               defaultValue={categoryVal}
               onChange={(val: string) => setCategoryVal(val)}
-              style={{ width: '100%' }}
+              className={styles.select}
             >
               <Option value="electronics">Electronics</Option>
               <Option value="credit">Credit</Option>
@@ -107,7 +109,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
             </Select>
           </Col>
         </Row>
-        <Row style={{ marginTop: '50px' }} justify="space-between">
+        <Row className={styles.row} justify="space-between">
           <Col span={12}>
             <Title level={3}>Name</Title>
             <Input
@@ -121,7 +123,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
             <Title level={3}>Value</Title>
             <InputNumber
               placeholder="Type here"
-              style={{ width: '100%' }}
+              className={styles.input}
               name="value"
               value={valueVal}
               onChange={(val) => setValueVal(val)}
@@ -129,7 +131,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           </Col>
         </Row>
 
-        <Row style={{ marginTop: '50px' }}>
+        <Row className={styles.row}>
           <Col span={24}>
             <Title level={3}>Date</Title>
             <Calendar
@@ -141,8 +143,8 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           </Col>
         </Row>
         {!validate() && isBeingSubmitted ? (
-          <Row style={{ marginTop: '20px', marginBottom: '0' }}>
-            <Paragraph style={{ color: 'red', marginBottom: '0' }}>Form is not valid</Paragraph>
+          <Row className={styles.error__wrapper}>
+            <Paragraph className={styles.error__text}>Form is not valid</Paragraph>
           </Row>
         ) : null}
       </Modal>

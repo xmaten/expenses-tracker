@@ -1,0 +1,33 @@
+.layout {
+  min-height: calc(100vh - 64px);
+}
+
+.spin {
+  margin-top: 50px;
+}
+
+.sider-toggle-button {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  transform: translateX(-350px);
+  z-index: 99;
+}
+
+.sider-toggle-button--collapsed {
+  translatex: 0;
+}
+
+.sider {
+  height: 100vh;
+  position: fixed;
+  transform: translateX(0);
+  right: 0;
+  top: 64px;
+  transition: transform 0.3s ease;
+  overflow: auto;
+}
+
+.sider--collapsed {
+  transform: translateX(100%);
+}

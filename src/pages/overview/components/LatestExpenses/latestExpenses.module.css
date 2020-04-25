@@ -1,0 +1,15 @@
+.header__title {
+  padding: 24px;
+}
+
+.expense-item {
+  margin-top: 50px;
+}
+
+.expense-item__date {
+  margin-top: -10px;
+}
+
+.calendar-wrapper {
+  margin-top: 50px;
+}
