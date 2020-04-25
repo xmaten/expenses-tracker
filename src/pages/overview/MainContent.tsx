@@ -138,18 +138,20 @@ export const MainContent = () => {
           <Title level={3}>Total</Title>
           <Title level={4}>{total}</Title>
         </Col>
-        <Col span={6}>
-          <Title level={3}>Display</Title>
-          <Select
-            defaultValue={timePeriod}
-            style={{ width: '70%' }}
-            onChange={(value) => setTimePeriod(value)}
-          >
-            <Option value="year">Year</Option>
-            <Option value="month">Month</Option>
-            <Option value="week">Week</Option>
-          </Select>
-        </Col>
+        {state.chosenMonth === dayjs().month() + 1 && (
+          <Col span={6}>
+            <Title level={3}>Display</Title>
+            <Select
+              defaultValue={timePeriod}
+              style={{ width: '70%' }}
+              onChange={(value) => setTimePeriod(value)}
+            >
+              <Option value="year">Year</Option>
+              <Option value="month">Month</Option>
+              <Option value="week">Week</Option>
+            </Select>
+          </Col>
+        )}
       </Row>
 
       <Row style={{ marginTop: '30px' }}>
