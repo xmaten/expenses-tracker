@@ -8,7 +8,7 @@ import { disableFutureDates } from 'utils/disableFutureDates'
 import dayjs, { Dayjs } from 'dayjs'
 import { ActionTypes } from 'store/actionTypes'
 
-import { ExpensesFromGivenDayModal } from './ExpensesFromGivenDayModal/ExpensesFromGivenDayModal'
+import { ExpensesFromGivenDayModal } from './latestExpenses/ExpensesFromGivenDayModal'
 import { dateFormats } from '../../utils/dateFormats'
 
 const { Title, Paragraph } = Typography

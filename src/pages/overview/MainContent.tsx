@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Row, Col, Typography, Button, Select } from 'antd'
-import { PlusSquareFilled } from '@ant-design/icons'
+import { PlusSquareFilled, LeftOutlined, RightOutlined } from '@ant-design/icons'
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
@@ -8,9 +8,9 @@ import { Revenue } from 'api/revenues/revenues.model'
 import { getDataFromXDaysAgo } from 'utils/getDataFromXDaysAgo'
 import { ActionTypes } from 'store/actionTypes'
 
-import { LinearChart } from './LinearChart/LinearChart'
-import { PieChart } from './PieChart/PieChart'
-import { AddNewModal } from './AddNewModal/AddNewModal'
+import { LinearChart } from './mainContent/LinearChart'
+import { PieChart } from './mainContent/PieChart'
+import { AddNewModal } from './mainContent/AddNewModal'
 
 const { Title } = Typography
 const { Option } = Select
@@ -73,15 +73,23 @@ export const MainContent = () => {
         title="Add new"
       />
 
-      <Row style={{ padding: '24px' }}>
-        <Col span={18}>
+      <Row style={{ padding: '24px', marginBottom: '0.5rem' }} align="middle">
+        <Col span={1}>
+          <LeftOutlined />
+        </Col>
+        <Col span={4}>
           <Typography>
-            <Title level={2}>April 2020</Title>
+            <Title level={2} style={{ marginBottom: 0 }}>
+              April 2020
+            </Title>
           </Typography>
         </Col>
+        <Col span={2}>
+          <RightOutlined />
+        </Col>
 
-        <Col span={6}>
-          <Row align="middle" justify="center">
+        <Col span={16}>
+          <Row align="middle" justify="end">
             <Button
               style={{ fontWeight: 'bold' }}
               type="primary"
