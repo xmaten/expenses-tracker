@@ -45,24 +45,33 @@ export const Overview = () => {
             <Content>
               <MainContent />
             </Content>
-            {/*<Sider*/}
-            {/*  theme="light"*/}
-            {/*  width={350}*/}
-            {/*  style={{*/}
-            {/*    transform: `${siderCollapsed ? 'translateX(80%)' : 'translateX(0%)'}`,*/}
-            {/*    transition: 'transform 0.3s ease',*/}
-            {/*    right: 0,*/}
-            {/*    top: '64px',*/}
-            {/*    overflow: 'auto',*/}
-            {/*    height: '100vh',*/}
-            {/*    position: 'fixed',*/}
-            {/*  }}*/}
-            {/*>*/}
-            {/*  <Button type="link" onClick={() => setSiderCollapsed(!siderCollapsed)}>*/}
-            {/*    {siderCollapsed ? <LeftOutlined /> : <RightOutlined />}*/}
-            {/*  </Button>*/}
-            {/*  <LatestExpenses />*/}
-            {/*</Sider>*/}
+            <Button
+              style={{
+                position: 'fixed',
+                top: '64px',
+                right: 0,
+                transform: `${siderCollapsed ? 'translateX(0)' : 'translateX(-350px)'}`,
+                zIndex: 99,
+              }}
+              onClick={() => setSiderCollapsed(!siderCollapsed)}
+            >
+              {siderCollapsed ? <LeftOutlined /> : <RightOutlined />}
+            </Button>
+            <Sider
+              theme="light"
+              width={350}
+              style={{
+                transform: `${siderCollapsed ? 'translateX(100%)' : 'translateX(0%)'}`,
+                transition: 'transform 0.3s ease',
+                right: 0,
+                top: '64px',
+                overflow: 'auto',
+                height: '100vh',
+                position: 'fixed',
+              }}
+            >
+              <LatestExpenses />
+            </Sider>
           </>
         )}
       </Layout>
