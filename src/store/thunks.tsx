@@ -1,32 +1,30 @@
+import { Dispatch } from 'react'
 import { ExpensesApi } from 'api/expenses/expenses'
 import { RevenuesApi } from 'api/revenues/revenues'
+import { ActionTypes } from './actionTypes'
+import { mergeDataWithId } from '../utils/mergeDataWithId'
 
-export const getExpenses = async () => {
-  const { data } = await ExpensesApi.getExpenses()
-  const dataWithId = []
-  for (const val in data) {
-    const valuesWithId = {
-      ...data[val],
-      id: val,
-    }
+export const getExpenses = async (dispatch?: Dispatch<any>) => {
+  dispatch && dispatch({ type: ActionTypes.GET_DATA_START })
 
-    dataWithId.push(valuesWithId)
+  try {
+    const { data } = await ExpensesApi.getExpenses()
+    const dataWithId = mergeDataWithId(data)
+
+    dispatch && dispatch({ type: ActionTypes.GET_EXPENSES, payload: dataWithId })
+  } catch {
+    dispatch && dispatch({ type: ActionTypes.GET_DATA_ERROR })
   }
-
-  return dataWithId
 }
 
-export const getRevenues = async () => {
-  const { data } = await RevenuesApi.getRevenues()
-  const dataWithId = []
-  for (const val in data) {
-    const valuesWithId = {
-      ...data[val],
-      id: val,
-    }
+export const getRevenues = async (dispatch?: Dispatch<any>) => {
+  dispatch && dispatch({ type: ActionTypes.GET_DATA_START })
+  try {
+    const { data } = await RevenuesApi.getRevenues()
+    const dataWithId = mergeDataWithId(data)
 
-    dataWithId.push(valuesWithId)
+    dispatch && dispatch({ type: ActionTypes.GET_REVENUES, payload: dataWithId })
+  } catch {
+    dispatch && dispatch({ type: ActionTypes.GET_DATA_ERROR })
   }
-
-  return dataWithId
 }
