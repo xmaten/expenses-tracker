@@ -3,13 +3,8 @@ import { Modal, Row, Col, Typography, Select, Input, InputNumber } from 'antd'
 import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
 
-import { NewExpense } from 'api/expenses/expenses.model'
-import { NewRevenue } from 'api/revenues/revenues.model'
-import { ExpensesApi } from 'api/expenses/expenses'
 import { store } from 'store/store'
-import { ActionTypes } from 'store/actionTypes'
-import { RevenuesApi } from 'api/revenues/revenues'
-import { getExpenses, getRevenues } from 'store/thunks'
+import { addExpense, addRevenue } from 'store/thunks'
 import Calendar from 'components/dataInput/Calendar'
 import { disableFutureDates } from 'utils/disableFutureDates'
 
@@ -31,39 +26,6 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
   const [categoryVal, setCategoryVal] = useState('food')
   const [dateVal, setDateVal] = useState(dayjs())
   const [isBeingSubmitted, setIsBeingSubmitted] = useState(false)
-
-  const addExpense = async (expenseData: NewExpense) => {
-    dispatch({ type: ActionTypes.UPDATE_DATA_START })
-
-    try {
-      await ExpensesApi.addExpenses(expenseData)
-
-      dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
-
-      const updatedExpenses = await getExpenses()
-      dispatch({ type: ActionTypes.GET_EXPENSES, payload: updatedExpenses })
-      onOk(false)
-    } catch {
-      dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
-    }
-  }
-
-  const addRevenue = async (revenueData: NewRevenue) => {
-    dispatch({ type: ActionTypes.UPDATE_DATA_START })
-
-    try {
-      await RevenuesApi.addReveune(revenueData)
-
-      dispatch({ type: ActionTypes.UPDATE_DATA_SUCCESS })
-
-      const updatedRevenues = getRevenues()
-      dispatch({ type: ActionTypes.GET_REVENUES, payload: updatedRevenues })
-
-      onOk(false)
-    } catch {
-      dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
-    }
-  }
 
   const validate = () => {
     if (nameVal === '' || !valueVal) {
@@ -93,7 +55,8 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           },
         }
 
-        addExpense(baseData)
+        addExpense(baseData, dispatch)
+        onOk(false)
       } else if (typeVal === 'revenue') {
         const baseData = {
           [uuidv4().toString()]: {
@@ -103,7 +66,8 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
           },
         }
 
-        addRevenue(baseData)
+        addRevenue(baseData, dispatch)
+        onOk(false)
       }
     }
   }
