@@ -93,11 +93,11 @@ export const MainContent = () => {
 
       <Row style={{ padding: '24px', marginBottom: '0.5rem' }} align="middle">
         <Col span={1}>
-          <button onClick={() => changeMonth(-1)}>
+          <Button type="link" onClick={() => changeMonth(-1)}>
             <LeftOutlined />
-          </button>
+          </Button>
         </Col>
-        <Col span={4}>
+        <Col span={6}>
           <Typography>
             <Title level={2} style={{ marginBottom: 0 }}>
               {getCurrentMonthName(state.chosenMonth)} {dayjs().year()}
@@ -105,12 +105,12 @@ export const MainContent = () => {
           </Typography>
         </Col>
         <Col span={2}>
-          <button onClick={() => changeMonth(1)}>
+          <Button type="link" onClick={() => changeMonth(1)}>
             <RightOutlined />
-          </button>
+          </Button>
         </Col>
 
-        <Col span={16}>
+        <Col span={12}>
           <Row align="middle" justify="end">
             <Button
               style={{ fontWeight: 'bold' }}
