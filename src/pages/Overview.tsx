@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from 'react'
-import { Alert, Layout, Spin } from 'antd'
+import React, { useEffect, useContext, useState } from 'react'
+import { Alert, Button, Layout, Spin } from 'antd'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 
 import { Nav } from 'components/nav/Nav'
 import { store } from 'store/store'
@@ -14,6 +15,7 @@ const { Header, Sider, Content } = Layout
 
 export const Overview = () => {
   const { dispatch, state } = useContext(store)
+  const [siderCollapsed, setSiderCollapsed] = useState(true)
 
   useEffect(() => {
     getExpenses(dispatch)
@@ -43,9 +45,24 @@ export const Overview = () => {
             <Content>
               <MainContent />
             </Content>
-            <Sider theme="light" width={350}>
-              <LatestExpenses />
-            </Sider>
+            {/*<Sider*/}
+            {/*  theme="light"*/}
+            {/*  width={350}*/}
+            {/*  style={{*/}
+            {/*    transform: `${siderCollapsed ? 'translateX(80%)' : 'translateX(0%)'}`,*/}
+            {/*    transition: 'transform 0.3s ease',*/}
+            {/*    right: 0,*/}
+            {/*    top: '64px',*/}
+            {/*    overflow: 'auto',*/}
+            {/*    height: '100vh',*/}
+            {/*    position: 'fixed',*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <Button type="link" onClick={() => setSiderCollapsed(!siderCollapsed)}>*/}
+            {/*    {siderCollapsed ? <LeftOutlined /> : <RightOutlined />}*/}
+            {/*  </Button>*/}
+            {/*  <LatestExpenses />*/}
+            {/*</Sider>*/}
           </>
         )}
       </Layout>

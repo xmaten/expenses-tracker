@@ -91,26 +91,26 @@ export const MainContent = () => {
         title="Add new"
       />
 
-      <Row style={{ padding: '24px', marginBottom: '0.5rem' }} align="middle">
-        <Col span={1}>
+      <Row style={{ padding: '24px' }} align="middle">
+        <Col xs={2} lg={1}>
           <Button type="link" onClick={() => changeMonth(-1)}>
             <LeftOutlined />
           </Button>
         </Col>
-        <Col span={6}>
+        <Col xs={20} lg={6}>
           <Typography>
             <Title level={2} style={{ marginBottom: 0, textAlign: 'center' }}>
               {getCurrentMonthName(state.chosenMonth)} {dayjs().year()}
             </Title>
           </Typography>
         </Col>
-        <Col span={2}>
+        <Col xs={2} lg={1}>
           <Button type="link" onClick={() => changeMonth(1)}>
             <RightOutlined />
           </Button>
         </Col>
 
-        <Col span={12}>
+        <Col xs={24} lg={12} style={{ marginTop: '1rem' }}>
           <Row align="middle" justify="end">
             <Button
               style={{ fontWeight: 'bold' }}
@@ -126,20 +126,32 @@ export const MainContent = () => {
       </Row>
 
       <Row style={{ paddingLeft: '24px' }}>
-        <Col span={6}>
-          <Title level={3}>Expenses</Title>
-          <Title level={4}>- {expenses}</Title>
+        <Col xs={12} lg={6}>
+          <Title style={{ margin: 0 }} level={3}>
+            Expenses
+          </Title>
+          <Title style={{ margin: 0 }} level={4}>
+            - {expenses}
+          </Title>
         </Col>
-        <Col span={6}>
-          <Title level={3}>Incomes</Title>
-          <Title level={4}>{incomes}</Title>
+        <Col xs={12} lg={6}>
+          <Title style={{ margin: 0 }} level={3}>
+            Incomes
+          </Title>
+          <Title style={{ margin: 0 }} level={4}>
+            {incomes}
+          </Title>
         </Col>
-        <Col span={6}>
-          <Title level={3}>Total</Title>
-          <Title level={4}>{total}</Title>
+        <Col xs={12} lg={6} style={{ marginTop: '1rem' }}>
+          <Title style={{ margin: 0 }} level={3}>
+            Total
+          </Title>
+          <Title style={{ margin: 0 }} level={4}>
+            {total}
+          </Title>
         </Col>
         {state.chosenMonth === dayjs().month() + 1 && (
-          <Col span={6}>
+          <Col xs={12} lg={6} style={{ marginTop: '1rem' }}>
             <Title level={3}>Display</Title>
             <Select
               defaultValue={timePeriod}
@@ -155,10 +167,10 @@ export const MainContent = () => {
       </Row>
 
       <Row style={{ marginTop: '30px' }}>
-        <Col span={13}>
+        <Col xs={24} lg={14} style={{ overflowX: 'scroll' }}>
           <LinearChart />
         </Col>
-        <Col span={11}>
+        <Col xs={24} lg={10} style={{ overflowX: 'scroll' }}>
           <PieChart />
         </Col>
       </Row>

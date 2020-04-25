@@ -46,7 +46,7 @@ export const LinearChart = () => {
   }, [state.expensesFromXDaysAgo])
 
   return (
-    <Chart width={750} height={500} data={chartData}>
+    <Chart width={900} height={500} data={chartData}>
       <Axis name="value" />
       <Geom type="line" position="date*value" color="date" />
     </Chart>
