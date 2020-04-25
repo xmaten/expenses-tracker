@@ -70,6 +70,18 @@ export const MainContent = () => {
     }
   }, [timePeriod])
 
+  const changeMonth = (amount: number) => {
+    let nextMonth = state.chosenMonth + amount
+
+    if (nextMonth === 13) {
+      nextMonth = 1
+    } else if (nextMonth === 0) {
+      nextMonth = 12
+    }
+
+    dispatch({ type: ActionTypes.SET_CHOSEN_MONTH, payload: nextMonth })
+  }
+
   return (
     <>
       <AddNewModal
@@ -81,7 +93,9 @@ export const MainContent = () => {
 
       <Row style={{ padding: '24px', marginBottom: '0.5rem' }} align="middle">
         <Col span={1}>
-          <LeftOutlined />
+          <button onClick={() => changeMonth(-1)}>
+            <LeftOutlined />
+          </button>
         </Col>
         <Col span={4}>
           <Typography>
@@ -91,7 +105,9 @@ export const MainContent = () => {
           </Typography>
         </Col>
         <Col span={2}>
-          <RightOutlined />
+          <button onClick={() => changeMonth(1)}>
+            <RightOutlined />
+          </button>
         </Col>
 
         <Col span={16}>

@@ -1,4 +1,5 @@
 export const getCurrentMonthName = (month: number) => {
+  console.log(month)
   const months: Record<number, string> = {
     1: 'Styczeń',
     2: 'Luty',

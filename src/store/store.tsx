@@ -122,6 +122,11 @@ const StateProvider: React.FC = ({ children }) => {
           ...state,
           incomesForChosenMonth: action.payload,
         }
+      case ActionTypes.SET_CHOSEN_MONTH:
+        return {
+          ...state,
+          chosenMonth: action.payload,
+        }
       default:
         throw new Error()
     }
