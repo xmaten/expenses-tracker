@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Row, Col, Typography, Button, Select } from 'antd'
 import { PlusSquareFilled, LeftOutlined, RightOutlined } from '@ant-design/icons'
+import dayjs from 'dayjs'
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
@@ -11,6 +12,7 @@ import { ActionTypes } from 'store/actionTypes'
 import { LinearChart } from './mainContent/LinearChart'
 import { PieChart } from './mainContent/PieChart'
 import { AddNewModal } from './mainContent/AddNewModal'
+import { getCurrentMonthName } from '../../utils/getCurrentMonthName'
 
 const { Title } = Typography
 const { Option } = Select
@@ -84,7 +86,7 @@ export const MainContent = () => {
         <Col span={4}>
           <Typography>
             <Title level={2} style={{ marginBottom: 0 }}>
-              April 2020
+              {getCurrentMonthName(state.chosenMonth)} {dayjs().year()}
             </Title>
           </Typography>
         </Col>
