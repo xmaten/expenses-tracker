@@ -99,7 +99,7 @@ export const MainContent = () => {
         </Col>
         <Col span={6}>
           <Typography>
-            <Title level={2} style={{ marginBottom: 0 }}>
+            <Title level={2} style={{ marginBottom: 0, textAlign: 'center' }}>
               {getCurrentMonthName(state.chosenMonth)} {dayjs().year()}
             </Title>
           </Typography>
