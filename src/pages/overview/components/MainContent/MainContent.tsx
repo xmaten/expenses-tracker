@@ -171,9 +171,9 @@ export const MainContent = () => {
         <Col xs={24} lg={14} className={styles.chart__wrapper}>
           <LinearChart />
         </Col>
-        {/*<Col xs={24} lg={10} className={styles.chart__wrapper}>*/}
-        {/*  <PieChart />*/}
-        {/*</Col>*/}
+        <Col xs={24} lg={10} className={styles.chart__wrapper}>
+          <PieChart />
+        </Col>
       </Row>
     </>
   )
