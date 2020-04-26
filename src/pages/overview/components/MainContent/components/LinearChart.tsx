@@ -1,17 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Chart, Axis, Geom } from 'bizcharts'
 import dayjs from 'dayjs'
+import { Line } from 'react-chartjs-2'
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
 
 interface ChartData {
-  value: number
-  date: number
+  labels: any
+  datasets: any
 }
 
 export const LinearChart = () => {
-  const [chartData, setChartData] = useState<ChartData[]>([])
+  const [chartData, setChartData] = useState<ChartData>({
+    labels: [],
+    datasets: [],
+  })
   const { state } = useContext(store)
 
   const parseApiData = (data: Expense[]) => {
@@ -31,24 +34,42 @@ export const LinearChart = () => {
       }
     })
 
-    const result = Object.keys(dateValuePair).map((key) => {
-      return {
-        date: Number(key),
-        value: dateValuePair[key],
-      }
-    })
+    const labels = Object.keys(dateValuePair)
+    const values = Object.values(dateValuePair)
 
-    setChartData(result)
+    const dataset = {
+      labels,
+      datasets: [
+        {
+          label: 'Value',
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(75,192,192,0.4)',
+          borderColor: 'rgba(75,192,192,1)',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: 'rgba(75,192,192,1)',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+          pointHoverBorderColor: 'rgba(220,220,220,1)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: values,
+        },
+      ],
+    }
+
+    setChartData(dataset)
   }
 
   useEffect(() => {
     parseApiData(state.expensesFromXDaysAgo)
   }, [state.expensesFromXDaysAgo])
 
-  return (
-    <Chart width={900} height={500} data={chartData}>
-      <Axis name="value" />
-      <Geom type="line" position="date*value" color="date" />
-    </Chart>
-  )
+  return <Line data={chartData} />
 }

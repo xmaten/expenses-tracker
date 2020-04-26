@@ -40,7 +40,7 @@ export const Overview = () => {
         {state.isError ? <Alert message="There was an error" type="error" /> : null}
 
         {state.isLoading ? (
-          <Spin className={styles.spin} />
+          <Spin data-testid="overview-spinner" className={styles.spin} />
         ) : (
           <>
             <Content>
