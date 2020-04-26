@@ -44,7 +44,7 @@ export const MainContent = () => {
   const recalculateDataFromXDaysAgo = (
     expensesData: Expense[],
     incomesData: Income[],
-    timePeriod: 'month' | 'week' | 'year' | null,
+    timePeriod: 'month' | 'week' | 'two-weeks' | null,
   ) => {
     const expensesFromXDaysAgo = getDataFromXDaysAgo(expensesData, timePeriod)
     const incomesFromXDaysAgo = getDataFromXDaysAgo(incomesData, timePeriod)
@@ -62,7 +62,7 @@ export const MainContent = () => {
   }, [state.expensesForChosenMonth, state.incomesForChosenMonth])
 
   useEffect(() => {
-    if (timePeriod === 'month' || timePeriod === 'year' || timePeriod === 'week') {
+    if (timePeriod === 'month' || timePeriod === 'two-weeks' || timePeriod === 'week') {
       recalculateDataFromXDaysAgo(
         state.expensesForChosenMonth,
         state.incomesForChosenMonth,
@@ -159,8 +159,8 @@ export const MainContent = () => {
               className={styles.select}
               onChange={(value) => setTimePeriod(value)}
             >
-              <Option value="year">Year</Option>
               <Option value="month">Month</Option>
+              <Option value="two-weeks">Two weeks</Option>
               <Option value="week">Week</Option>
             </Select>
           </Col>

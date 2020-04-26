@@ -17,8 +17,6 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 })
 
-HTMLCanvasElement.prototype.getContext = jest.fn()
-
 test('Shows loader', () => {
   const { queryByTestId } = renderWithRouter(<Overview />)
 

@@ -3,7 +3,10 @@ import isBetween from 'dayjs/plugin/isBetween'
 
 dayjs.extend(isBetween)
 
-export const getDataFromXDaysAgo = (data: any, timePeriod: 'month' | 'week' | 'year' | null) => {
+export const getDataFromXDaysAgo = (
+  data: any,
+  timePeriod: 'month' | 'week' | 'two-weeks' | null,
+) => {
   if (!timePeriod) {
     return data
   }
@@ -15,8 +18,8 @@ export const getDataFromXDaysAgo = (data: any, timePeriod: 'month' | 'week' | 'y
     xDaysAgo = dayjs().subtract(1, 'month')
   } else if (timePeriod === 'week') {
     xDaysAgo = dayjs().subtract(7, 'day')
-  } else if (timePeriod === 'year') {
-    xDaysAgo = dayjs().subtract(1, 'year')
+  } else if (timePeriod === 'two-weeks') {
+    xDaysAgo = dayjs().subtract(14, 'day')
   }
 
   const dates = data.filter((item: any) => dayjs(item.date).isBetween(today, xDaysAgo))
