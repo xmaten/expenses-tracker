@@ -1,7 +1,7 @@
 import 'jest-canvas-mock'
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
-import { MainContent } from './MainContent'
+import { calculateExpenses, calculateIncomes, calculateTotal, MainContent } from './index'
 import { renderWithRouter } from 'utils/testUtils/renderWithRouter'
 import { fireEvent } from '@testing-library/react'
 
@@ -27,4 +27,55 @@ test('Shows modal on button click', () => {
 
   const addNewModal = getByTestId('add-new-modal')
   expect(addNewModal).toBeDefined()
+})
+
+test('It calculates expenses', () => {
+  const data = [
+    {
+      name: '',
+      date: '',
+      category: '',
+      value: 100,
+    },
+    {
+      name: '',
+      date: '',
+      category: '',
+      value: 200,
+    },
+  ]
+
+  const expenses = calculateExpenses(data)
+
+  expect(expenses).toEqual(300)
+})
+
+test('It calculates incomes', () => {
+  const data = [
+    {
+      name: '',
+      date: '',
+      category: '',
+      value: 100,
+    },
+    {
+      name: '',
+      date: '',
+      category: '',
+      value: 200,
+    },
+  ]
+
+  const incomes = calculateIncomes(data)
+
+  expect(incomes).toEqual(300)
+})
+
+test('It calculates total', () => {
+  const EXPENSES = 5000
+  const INCOMES = 4000
+
+  const total = calculateTotal(EXPENSES, INCOMES)
+
+  expect(total).toEqual(-1000)
 })

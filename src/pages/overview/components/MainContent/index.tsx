@@ -18,6 +18,18 @@ import styles from './style.module.css'
 const { Title } = Typography
 const { Option } = Select
 
+export const calculateExpenses = (expensesData: Expense[]) => {
+  return expensesData.reduce((acc, curr) => acc + curr.value, 0)
+}
+
+export const calculateIncomes = (incomesData: Income[]) => {
+  return incomesData.reduce((acc, curr) => acc + curr.value, 0)
+}
+
+export const calculateTotal = (totalExpenses: number, totalIncomes: number) => {
+  return -totalExpenses + totalIncomes
+}
+
 export const MainContent = () => {
   const { state, dispatch } = useContext(store)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -25,21 +37,6 @@ export const MainContent = () => {
   const [incomes, setIncomes] = useState(0)
   const [total, setTotal] = useState(0)
   const [timePeriod, setTimePeriod] = useState('month')
-
-  const calculateExpenses = (expensesData: Expense[]) => {
-    const exp = expensesData.reduce((acc, curr) => acc + curr.value, 0)
-    setExpenses(exp)
-  }
-
-  const calculateIncomes = (incomesData: Income[]) => {
-    const inc = incomesData.reduce((acc, curr) => acc + curr.value, 0)
-    setIncomes(inc)
-  }
-
-  const calculateTotal = (totalExpenses: number, totalIncomes: number) => {
-    const tot = -totalExpenses + totalIncomes
-    setTotal(tot)
-  }
 
   const recalculateDataFromXDaysAgo = (
     expensesData: Expense[],
@@ -49,9 +46,12 @@ export const MainContent = () => {
     const expensesFromXDaysAgo = getDataFromXDaysAgo(expensesData, timePeriod)
     const incomesFromXDaysAgo = getDataFromXDaysAgo(incomesData, timePeriod)
 
-    calculateExpenses(expensesFromXDaysAgo)
-    calculateIncomes(incomesFromXDaysAgo)
-    calculateTotal(expenses, incomes)
+    const exp = calculateExpenses(expensesFromXDaysAgo)
+    const inc = calculateIncomes(incomesFromXDaysAgo)
+    const tot = calculateTotal(expenses, incomes)
+    setExpenses(exp)
+    setIncomes(inc)
+    setTotal(tot)
 
     dispatch({ type: ActionTypes.SET_EXPENSES_FROM_X_DAYS_AGO, payload: expensesFromXDaysAgo })
     dispatch({ type: ActionTypes.SET_INCOMES_FROM_X_DAYS_AGO, payload: incomesFromXDaysAgo })
