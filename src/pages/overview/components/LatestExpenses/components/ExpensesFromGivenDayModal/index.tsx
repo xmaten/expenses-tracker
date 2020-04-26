@@ -4,7 +4,7 @@ import { Col, Modal, Row, Typography, Divider } from 'antd'
 import { Expense } from 'api/expenses/expenses.model'
 import { store } from 'store/store'
 
-import styles from './expensesFromGivenDay.module.css'
+import styles from './style.module.css'
 
 type Props = {
   title: string

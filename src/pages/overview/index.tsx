@@ -8,9 +8,9 @@ import { getExpenses, getIncomes } from 'store/thunks'
 import { fitlerDataForChosenMonth } from 'utils/fitlerDataForChosenMonth'
 import { ActionTypes } from 'store/actionTypes'
 
-import { LatestExpenses } from './overview/components/LatestExpenses/LatestExpenses'
-import { MainContent } from './overview/components/MainContent/MainContent'
-import styles from './overview/overview.module.css'
+import { LatestExpenses } from './components/LatestExpenses'
+import { MainContent } from './components/MainContent'
+import styles from './style.module.css'
 
 const { Header, Sider, Content } = Layout
 

@@ -8,7 +8,7 @@ import { addExpense, addIncome } from 'store/thunks'
 import Calendar from 'components/dataInput/Calendar'
 import { disableFutureDates } from 'utils/disableFutureDates'
 
-import styles from './addNewModal.module.css'
+import styles from './style.module.css'
 
 type Props = {
   title: string

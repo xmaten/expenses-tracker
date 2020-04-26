@@ -13,7 +13,7 @@ import { getCurrentMonthName } from 'utils/getCurrentMonthName'
 import { LinearChart } from './components/LinearChart'
 import { PieChart } from './components/PieChart'
 import { AddNewModal } from './components/AddNewModal'
-import styles from './mainContent.module.css'
+import styles from './style.module.css'
 
 const { Title } = Typography
 const { Option } = Select

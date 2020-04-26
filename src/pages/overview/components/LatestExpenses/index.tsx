@@ -10,7 +10,7 @@ import { ActionTypes } from 'store/actionTypes'
 import { dateFormats } from 'utils/dateFormats'
 
 import { ExpensesFromGivenDayModal } from './components/ExpensesFromGivenDayModal'
-import styles from './latestExpenses.module.css'
+import styles from './style.module.css'
 
 const { Title, Paragraph } = Typography
 
