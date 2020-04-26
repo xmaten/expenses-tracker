@@ -1,8 +1,9 @@
 import 'jest-canvas-mock'
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
-import { Overview } from '../Overview'
+import { MainContent } from './MainContent'
 import { renderWithRouter } from 'utils/testUtils/renderWithRouter'
+import { fireEvent } from '@testing-library/react'
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -18,9 +19,12 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 })
 
-test('Shows loader', async () => {
-  const { getByTestId } = renderWithRouter(<Overview />)
-  const spinner = getByTestId('overview-spinner')
-  console.log(spinner)
-  expect(spinner).toBeDefined()
+test('Shows modal on button click', () => {
+  const { getByTestId } = renderWithRouter(<MainContent />)
+
+  const addNewButton = getByTestId('add-new-button')
+  fireEvent.click(addNewButton)
+
+  const addNewModal = getByTestId('add-new-modal')
+  expect(addNewModal).toBeDefined()
 })

@@ -118,6 +118,7 @@ export const MainContent = () => {
               type="primary"
               value="large"
               onClick={() => setIsModalOpen(true)}
+              data-testid="add-new-button"
             >
               <PlusSquareFilled />
               Add new

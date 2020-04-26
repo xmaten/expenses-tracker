@@ -82,7 +82,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
         onOk={() => onSubmit()}
         onCancel={() => onCancel(false)}
       >
-        <Row justify="space-between">
+        <Row justify="space-between" data-testid="add-new-modal">
           <Col span={12}>
             <Title level={3}>Type</Title>
             <Select

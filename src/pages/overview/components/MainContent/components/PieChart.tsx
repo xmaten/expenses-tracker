@@ -41,8 +41,6 @@ export const PieChart = () => {
       ],
     }
 
-    console.log(dataset)
-
     setChartData(dataset)
   }
 
