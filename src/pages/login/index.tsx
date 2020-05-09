@@ -14,7 +14,7 @@ const tailLayout = {
 
 const { Title } = Typography
 
-export const Register = () => {
+export const Login = () => {
   const onFinish = (values: any) => {
     console.log('Success:', values)
   }
@@ -37,14 +37,6 @@ export const Register = () => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[{ required: true, message: 'Username is required' }]}
-            >
-              <Input />
-            </Form.Item>
-
             <Form.Item
               label="Email"
               name="email"
@@ -69,7 +61,7 @@ export const Register = () => {
           </Form>
 
           <p className={styles.link}>
-            Already registered? <Link to="/login">Login here.</Link>
+            Don't have an account? <Link to="/login">Register here.</Link>
           </p>
         </Col>
       </Row>
