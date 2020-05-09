@@ -132,7 +132,7 @@ export const MainContent = () => {
           <Title className={styles.stats__title} level={3}>
             Expenses
           </Title>
-          <Title className={styles.stats__title} level={4}>
+          <Title className={styles.stats__title} level={4} data-testid="expenses-val">
             - {expenses}
           </Title>
         </Col>
@@ -140,7 +140,7 @@ export const MainContent = () => {
           <Title className={styles.stats__title} level={3}>
             Incomes
           </Title>
-          <Title className={styles.stats__title} level={4}>
+          <Title className={styles.stats__title} level={4} data-testid="incomes-val">
             {incomes}
           </Title>
         </Col>
@@ -148,7 +148,7 @@ export const MainContent = () => {
           <Title className={styles.stats__title} level={3}>
             Total
           </Title>
-          <Title className={styles.stats__title} level={4}>
+          <Title className={styles.stats__title} level={4} data-testid="total-val">
             {total}
           </Title>
         </Col>
