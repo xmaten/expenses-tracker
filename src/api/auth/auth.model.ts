@@ -3,3 +3,8 @@ export type RegisterFormaData = {
   email: string
   password: string
 }
+
+export type LoginFormData = {
+  email: string
+  password: string
+}

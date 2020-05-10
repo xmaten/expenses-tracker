@@ -6,7 +6,7 @@ import { mergeDataWithId } from 'utils/mergeDataWithId'
 import { NewExpense } from 'api/expenses/expenses.model'
 import { NewIncome } from 'api/incomes/incomes.model'
 import { AuthApi } from 'api/auth/auth'
-import { RegisterFormaData } from 'api/auth/auth.model'
+import { LoginFormData, RegisterFormaData } from 'api/auth/auth.model'
 
 import { ActionTypes } from './actionTypes'
 
@@ -75,5 +75,17 @@ export const registerUser = async (
     dispatch({ type: ActionTypes.REGISTER_SUCCESS })
   } catch {
     dispatch({ type: ActionTypes.REGISTER_FAIL })
+  }
+}
+
+export const loginUser = async (loginFormData: LoginFormData, dispatch: Dispatch<any>) => {
+  dispatch({ type: ActionTypes.LOGIN_START })
+
+  try {
+    await AuthApi.login(loginFormData)
+
+    dispatch({ type: ActionTypes.LOGIN_SUCCESS })
+  } catch {
+    dispatch({ type: ActionTypes.LOGIN_FAIL })
   }
 }

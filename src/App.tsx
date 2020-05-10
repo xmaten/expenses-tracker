@@ -12,7 +12,7 @@ export const App = () => (
     <StateProvider>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={Overview} />
+          <Route exact path="/overview" component={Overview} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>

@@ -144,6 +144,23 @@ const StateProvider: React.FC = ({ children }) => {
           isLoading: false,
           isSuccess: true,
         }
+      case ActionTypes.LOGIN_START:
+        return {
+          ...state,
+          isLoading: true,
+        }
+      case ActionTypes.LOGIN_FAIL:
+        return {
+          ...state,
+          isLoading: false,
+          isError: true,
+        }
+      case ActionTypes.LOGIN_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          isSuccess: true,
+        }
       default:
         throw new Error()
     }
