@@ -4,7 +4,7 @@ import httpClient from 'utils/httpClient'
 
 import { Expense, NewExpense } from './expenses.model'
 
-const url = '/expenses.json'
+const url = '/expenses'
 
 export const ExpensesApi = {
   getExpenses(): Promise<AxiosResponse<Expense[]>> {
