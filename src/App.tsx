@@ -7,12 +7,16 @@ import { Register } from 'pages/register'
 import { Login } from 'pages/login'
 import { StateProvider } from 'store/store'
 
+import { PrivateRoute } from './components/layout/PrivateRoute'
+
 export const App = () => (
   <>
     <StateProvider>
       <Router history={history}>
         <Switch>
-          <Route exact path="/overview" component={Overview} />
+          <PrivateRoute exact path="/overview">
+            <Overview />
+          </PrivateRoute>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>

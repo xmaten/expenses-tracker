@@ -7,6 +7,7 @@ import { NewExpense } from 'api/expenses/expenses.model'
 import { NewIncome } from 'api/incomes/incomes.model'
 import { AuthApi } from 'api/auth/auth'
 import { LoginFormData, RegisterFormaData } from 'api/auth/auth.model'
+import { saveToStorage } from 'utils/localStorage'
 
 import { ActionTypes } from './actionTypes'
 
@@ -82,10 +83,13 @@ export const loginUser = async (loginFormData: LoginFormData, dispatch: Dispatch
   dispatch({ type: ActionTypes.LOGIN_START })
 
   try {
-    await AuthApi.login(loginFormData)
+    const {
+      data: { response },
+    } = await AuthApi.login(loginFormData)
 
+    saveToStorage('access-token', response.token)
     dispatch({ type: ActionTypes.LOGIN_SUCCESS })
-  } catch {
+  } catch (e) {
     dispatch({ type: ActionTypes.LOGIN_FAIL })
   }
 }
