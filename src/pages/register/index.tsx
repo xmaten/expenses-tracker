@@ -26,9 +26,7 @@ export const Register = () => {
   }
 
   useEffect(() => {
-    console.log('effect')
     if (state.isSuccess) {
-      console.log('if')
       history.push('/login?initialLogin=true')
     }
   }, [state.isSuccess])
@@ -42,7 +40,11 @@ export const Register = () => {
         <Col span={12}>
           {(() => {
             if (state.isLoading) {
-              return <Spin />
+              return (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Spin />
+                </div>
+              )
             }
 
             if (state.isError) {
