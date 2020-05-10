@@ -127,6 +127,23 @@ const StateProvider: React.FC = ({ children }) => {
           ...state,
           chosenMonth: action.payload,
         }
+      case ActionTypes.REGISTER_START:
+        return {
+          ...state,
+          isLoading: true,
+        }
+      case ActionTypes.REGISTER_FAIL:
+        return {
+          ...state,
+          isLoading: false,
+          isError: true,
+        }
+      case ActionTypes.REGISTER_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          isSuccess: true,
+        }
       default:
         throw new Error()
     }

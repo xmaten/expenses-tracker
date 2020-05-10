@@ -5,6 +5,8 @@ import { IncomesApi } from 'api/incomes/incomes'
 import { mergeDataWithId } from 'utils/mergeDataWithId'
 import { NewExpense } from 'api/expenses/expenses.model'
 import { NewIncome } from 'api/incomes/incomes.model'
+import { AuthApi } from 'api/auth/auth'
+import { RegisterFormaData } from 'api/auth/auth.model'
 
 import { ActionTypes } from './actionTypes'
 
@@ -58,5 +60,20 @@ export const addIncome = async (incomeData: NewIncome, dispatch: Dispatch<any>) 
     await getIncomes(dispatch)
   } catch {
     dispatch({ type: ActionTypes.UPDATE_DATA_FAIL })
+  }
+}
+
+export const registerUser = async (
+  registerFormData: RegisterFormaData,
+  dispatch: Dispatch<any>,
+) => {
+  dispatch({ type: ActionTypes.REGISTER_START })
+
+  try {
+    await AuthApi.register(registerFormData)
+
+    dispatch({ type: ActionTypes.REGISTER_SUCCESS })
+  } catch {
+    dispatch({ type: ActionTypes.REGISTER_FAIL })
   }
 }
