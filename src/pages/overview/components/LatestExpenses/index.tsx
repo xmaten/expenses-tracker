@@ -50,14 +50,14 @@ export const LatestExpenses = () => {
         </Typography>
 
         {getLatestExpenses(state.expenses).map((item) => (
-          <Row className={styles.expenseItem} key={item.name}>
+          <Row className={styles.expenseItem} key={item.id}>
             <Col span={6}>
               <Avatar shape="square" size={64} />
             </Col>
             <Col span={12}>
               <Row>
                 <Col>
-                  <Title level={3}>{item.name}</Title>
+                  <Title level={3}>{item.title}</Title>
                 </Col>
               </Row>
               <Row>

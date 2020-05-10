@@ -41,13 +41,13 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
         </Row>
       )}
       {state.expensesFromGivenDay.map((item: Expense) => (
-        <Row key={item.name} align="bottom">
+        <Row key={item.id} align="bottom">
           <Col span={12}>
             <Title type="secondary" level={4} className={styles.item__category}>
               {item.category}
             </Title>
             <Title level={3} className={styles.item__name}>
-              {item.name}
+              {item.title}
             </Title>
           </Col>
           <Col span={12}>

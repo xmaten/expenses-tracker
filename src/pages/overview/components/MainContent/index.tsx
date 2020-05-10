@@ -19,6 +19,7 @@ const { Title } = Typography
 const { Option } = Select
 
 export const calculateExpenses = (expensesData: Expense[]) => {
+  console.log(expensesData)
   return expensesData.reduce((acc, curr) => acc + curr.value, 0)
 }
 

@@ -15,10 +15,11 @@ export const getExpenses = async (dispatch: Dispatch<any>) => {
   dispatch({ type: ActionTypes.GET_DATA_START })
 
   try {
-    const { data } = await ExpensesApi.getExpenses()
-    const dataWithId = mergeDataWithId(data)
+    const {
+      data: { response },
+    } = await ExpensesApi.getExpenses()
 
-    dispatch({ type: ActionTypes.GET_EXPENSES, payload: dataWithId })
+    dispatch({ type: ActionTypes.GET_EXPENSES, payload: response })
   } catch {
     dispatch({ type: ActionTypes.GET_DATA_ERROR })
   }
@@ -27,10 +28,11 @@ export const getExpenses = async (dispatch: Dispatch<any>) => {
 export const getIncomes = async (dispatch: Dispatch<any>) => {
   dispatch({ type: ActionTypes.GET_DATA_START })
   try {
-    const { data } = await IncomesApi.getIncomes()
-    const dataWithId = mergeDataWithId(data)
+    const {
+      data: { response },
+    } = await IncomesApi.getIncomes()
 
-    dispatch({ type: ActionTypes.GET_INCOMES, payload: dataWithId })
+    dispatch({ type: ActionTypes.GET_INCOMES, payload: response })
   } catch {
     dispatch({ type: ActionTypes.GET_DATA_ERROR })
   }

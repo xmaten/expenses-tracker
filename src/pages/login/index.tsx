@@ -98,7 +98,7 @@ export const Login = () => {
                 </Form>
 
                 <p className={styles.link}>
-                  Don't have an account? <Link to="/login">Register here.</Link>
+                  Don't have an account? <Link to="/register">Register here.</Link>
                 </p>
               </>
             )

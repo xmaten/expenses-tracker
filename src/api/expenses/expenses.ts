@@ -7,7 +7,7 @@ import { Expense, NewExpense } from './expenses.model'
 const url = '/expenses'
 
 export const ExpensesApi = {
-  getExpenses(): Promise<AxiosResponse<Expense[]>> {
+  getExpenses(): Promise<AxiosResponse<any>> {
     return httpClient.get(url)
   },
   addExpenses(newExpense: NewExpense): Promise<AxiosResponse<any>> {

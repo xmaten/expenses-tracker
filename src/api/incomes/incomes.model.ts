@@ -1,6 +1,7 @@
 export type Income = {
-  name: string
+  title: string
   value: number
+  id: number
 }
 
 export type NewIncome = {
