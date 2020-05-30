@@ -19,7 +19,6 @@ const { Title } = Typography
 const { Option } = Select
 
 export const calculateExpenses = (expensesData: Expense[]) => {
-  console.log(expensesData)
   return expensesData.reduce((acc, curr) => acc + curr.value, 0)
 }
 
@@ -28,7 +27,7 @@ export const calculateIncomes = (incomesData: Income[]) => {
 }
 
 export const calculateTotal = (totalExpenses: number, totalIncomes: number) => {
-  return -totalExpenses + totalIncomes
+  return totalIncomes - totalExpenses
 }
 
 export const MainContent = () => {
@@ -49,7 +48,7 @@ export const MainContent = () => {
 
     const exp = calculateExpenses(expensesFromXDaysAgo)
     const inc = calculateIncomes(incomesFromXDaysAgo)
-    const tot = calculateTotal(expenses, incomes)
+    const tot = calculateTotal(exp, inc)
     setExpenses(exp)
     setIncomes(inc)
     setTotal(tot)

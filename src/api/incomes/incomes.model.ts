@@ -5,9 +5,7 @@ export type Income = {
 }
 
 export type NewIncome = {
-  [id: string]: {
-    name: string
-    value: number | undefined
-    date: string
-  }
+  title: string
+  value: number | undefined
+  date: string
 }

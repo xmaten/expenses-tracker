@@ -11,6 +11,6 @@ export const ExpensesApi = {
     return httpClient.get(url)
   },
   addExpenses(newExpense: NewExpense): Promise<AxiosResponse<any>> {
-    return httpClient.patch(url, newExpense)
+    return httpClient.post(url, newExpense)
   },
 }

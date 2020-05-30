@@ -11,6 +11,6 @@ export const IncomesApi = {
     return httpClient.get(url)
   },
   addIncome(newIncome: NewIncome): Promise<AxiosResponse<any>> {
-    return httpClient.patch(url, newIncome)
+    return httpClient.post(url, newIncome)
   },
 }

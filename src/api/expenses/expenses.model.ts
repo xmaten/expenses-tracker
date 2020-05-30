@@ -7,10 +7,8 @@ export type Expense = {
 }
 
 export type NewExpense = {
-  [id: string]: {
-    name: string
-    value: number | undefined
-    category: string
-    date: string
-  }
+  title: string
+  value: number | undefined
+  category: string
+  date: string
 }

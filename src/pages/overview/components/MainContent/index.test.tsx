@@ -32,13 +32,13 @@ test('Shows modal on button click', () => {
 test('It calculates expenses', () => {
   const data = [
     {
-      name: '',
+      title: '',
       date: '',
       category: '',
       value: 100,
     },
     {
-      name: '',
+      title: '',
       date: '',
       category: '',
       value: 200,
@@ -53,13 +53,13 @@ test('It calculates expenses', () => {
 test('It calculates incomes', () => {
   const data = [
     {
-      name: '',
+      title: '',
       date: '',
       category: '',
       value: 100,
     },
     {
-      name: '',
+      title: '',
       date: '',
       category: '',
       value: 200,

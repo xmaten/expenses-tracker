@@ -49,23 +49,19 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
       if (typeVal === 'expense') {
         uuidv4()
         const baseData = {
-          [uuidv4().toString()]: {
-            name: nameVal,
-            value: valueVal,
-            date: dateVal.toISOString(),
-            category: categoryVal,
-          },
+          title: nameVal,
+          value: valueVal,
+          date: dateVal.toISOString(),
+          category: categoryVal,
         }
 
         addExpense(baseData, dispatch)
         onOk(false)
       } else if (typeVal === 'income') {
         const baseData = {
-          [uuidv4().toString()]: {
-            name: nameVal,
-            value: valueVal,
-            date: dateVal.toISOString(),
-          },
+          title: nameVal,
+          value: valueVal,
+          date: dateVal.toISOString(),
         }
 
         addIncome(baseData, dispatch)
