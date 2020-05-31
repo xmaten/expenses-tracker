@@ -15,6 +15,11 @@ export const Nav = () => {
     window.location.reload()
   }
 
+  const onLanguageChange = (lng: string) => {
+    localStorage.setItem('language', lng)
+    window.location.reload()
+  }
+
   return (
     <Row align="middle" style={{ height: '100%' }}>
       <Col span={16}>
@@ -37,6 +42,8 @@ export const Nav = () => {
           <Menu.Item>
             <p onClick={logout}>{t('logout')}</p>
           </Menu.Item>
+          <Menu.Item onClick={() => onLanguageChange('pl')}>PL</Menu.Item>
+          <Menu.Item onClick={() => onLanguageChange('en')}>EN</Menu.Item>
         </Menu>
       </Col>
     </Row>

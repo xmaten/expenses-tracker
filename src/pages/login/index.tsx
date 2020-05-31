@@ -77,7 +77,7 @@ export const Login = () => {
                   onFinish={onFinish}
                 >
                   <Form.Item
-                    label="Email"
+                    label={t('email')}
                     name="email"
                     rules={[{ required: true, message: t('emailRequired') }]}
                   >
@@ -85,7 +85,7 @@ export const Login = () => {
                   </Form.Item>
 
                   <Form.Item
-                    label="Password"
+                    label={t('password')}
                     name="password"
                     rules={[{ required: true, message: t('passwordRequired') }]}
                   >

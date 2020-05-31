@@ -4,6 +4,8 @@
   "usernameRequired": "Username is required",
   "emailRequired": "Email is required",
   "passwordRequired": "Password is required",
+  "email": "Email",
+  "password": "Password",
   "login": "Login",
   "register": "Register",
   "redirectToRegister": "Don't have an account? <1>Register here.</1>",

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Row, Col, Typography, Avatar } from 'antd'
 import { useTranslation } from 'react-i18next'
+import plPL from 'antd/es/date-picker/locale/pl_PL'
+import enGB from 'antd/es/date-picker/locale/en_GB'
 
 import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
@@ -78,6 +80,7 @@ export const LatestExpenses = () => {
 
         <Row className={styles.calendarWrapper}>
           <Calendar
+            locale={localStorage.getItem('language') === 'pl' ? plPL : enGB}
             value={selectedDate}
             fullscreen={false}
             onSelect={onDateSelect}

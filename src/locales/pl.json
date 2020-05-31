@@ -4,6 +4,8 @@
   "emailRequired": "Email jest wymagany",
   "passwordRequired": "Hasło jest wymagane",
   "login": "Zaloguj",
+  "email": "Email",
+  "password": "Hasło",
   "redirectToRegister": "Nie masz konta? <1>Przejdź do rejestracji.</1>",
   "redirectToLogin": "Masz już konto? <1>Zaloguj się.</1>",
   "overview": "Podsumowanie",

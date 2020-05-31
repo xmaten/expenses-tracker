@@ -11,11 +11,11 @@ i18n.use(initReactI18next).init({
     en: {
       translations: translationEN,
     },
-    pt: {
+    pl: {
       translations: translationPL,
     },
   },
-  lng: 'pl',
+  lng: localStorage.getItem('language'),
   fallbackLng: 'en',
   ns: ['translations'],
   defaultNS: 'translations',
