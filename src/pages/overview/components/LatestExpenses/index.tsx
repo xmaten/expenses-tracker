@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Row, Col, Typography, Avatar } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
@@ -18,6 +19,7 @@ export const LatestExpenses = () => {
   const [isExpensesModalVisible, setIsExpensesModalVisible] = useState(false)
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs())
   const { state, dispatch } = useContext(store)
+  const { t } = useTranslation()
 
   const getLatestExpenses = (data: Expense[]) => {
     return data.sort((a, b) => dayjs(b.date).diff(a.date)).slice(0, 3)
@@ -39,14 +41,14 @@ export const LatestExpenses = () => {
   return (
     <Row>
       <ExpensesFromGivenDayModal
-        title={`Expenses from ${dayjs(selectedDate).format(dateFormats.fullDate)}`}
+        title={`${t('expensesFrom')} ${dayjs(selectedDate).format(dateFormats.fullDate)}`}
         isVisible={isExpensesModalVisible}
         onOk={setIsExpensesModalVisible}
         onCancel={setIsExpensesModalVisible}
       />
       <Col span={24} className={styles.header__title}>
         <Typography>
-          <Title level={2}>Latest expenses</Title>
+          <Title level={2}>{t('latestExpenses')}</Title>
         </Typography>
 
         {getLatestExpenses(state.expenses).map((item) => (

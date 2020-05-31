@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Modal, Row, Col, Typography, Select, Input, InputNumber } from 'antd'
 import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 
 import { store } from 'store/store'
 import { addExpense, addIncome } from 'store/thunks'
@@ -28,6 +29,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
   const [categoryVal, setCategoryVal] = useState('food')
   const [dateVal, setDateVal] = useState(dayjs())
   const [isBeingSubmitted, setIsBeingSubmitted] = useState(false)
+  const { t } = useTranslation()
 
   const validate = () => {
     if (nameVal === '' || !valueVal) {
@@ -80,45 +82,45 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
       >
         <Row justify="space-between" data-testid="add-new-modal">
           <Col span={12}>
-            <Title level={3}>Type</Title>
+            <Title level={3}>{t('type')}</Title>
             <Select
               defaultValue={typeVal}
               onChange={(val: string) => setTypeVal(val)}
               className={styles.select}
             >
-              <Option value="expense">Expense</Option>
-              <Option value="income">Income</Option>
+              <Option value="expense">{t('expense')}</Option>
+              <Option value="income">{t('income')}</Option>
             </Select>
           </Col>
           <Col span={11}>
-            <Title level={3}>Category</Title>
+            <Title level={3}>{t('category')}</Title>
             <Select
               defaultValue={categoryVal}
               onChange={(val: string) => setCategoryVal(val)}
               className={styles.select}
             >
-              <Option value="electronics">Electronics</Option>
-              <Option value="credit">Credit</Option>
-              <Option value="food">Food</Option>
-              <Option value="entertainment">Entertainment</Option>
-              <Option value="other">Other</Option>
+              <Option value="electronics">{t('electronics')}</Option>
+              <Option value="credit">{t('credit')}</Option>
+              <Option value="food">{t('food')}</Option>
+              <Option value="entertainment">{t('entertainment')}</Option>
+              <Option value="other">{t('other')}</Option>
             </Select>
           </Col>
         </Row>
         <Row className={styles.row} justify="space-between">
           <Col span={12}>
-            <Title level={3}>Name</Title>
+            <Title level={3}>{t('title')}</Title>
             <Input
-              placeholder="Type here"
+              placeholder={t('typeHere')}
               name="name"
               value={nameVal}
               onChange={(e) => setNameVal(e.target.value)}
             />
           </Col>
           <Col span={11}>
-            <Title level={3}>Value</Title>
+            <Title level={3}>{t('value')}</Title>
             <InputNumber
-              placeholder="Type here"
+              placeholder={t('typeHere')}
               className={styles.input}
               name="value"
               value={valueVal}
@@ -129,7 +131,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
 
         <Row className={styles.row}>
           <Col span={24}>
-            <Title level={3}>Date</Title>
+            <Title level={3}>{t('date')}</Title>
             <Calendar
               fullscreen={false}
               value={dateVal}
@@ -140,7 +142,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
         </Row>
         {!validate() && isBeingSubmitted ? (
           <Row className={styles.error__wrapper}>
-            <Paragraph className={styles.error__text}>Form is not valid</Paragraph>
+            <Paragraph className={styles.error__text}>{t('formNotValid')}</Paragraph>
           </Row>
         ) : null}
       </Modal>

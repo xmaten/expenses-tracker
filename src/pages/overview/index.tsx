@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Alert, Button, Layout, Spin } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
 
 import { Nav } from 'components/nav/Nav'
 import { store } from 'store/store'
@@ -17,6 +18,7 @@ const { Header, Sider, Content } = Layout
 export const Overview = () => {
   const { dispatch, state } = useContext(store)
   const [siderCollapsed, setSiderCollapsed] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     getExpenses(dispatch)
@@ -37,7 +39,7 @@ export const Overview = () => {
         <Nav />
       </Header>
       <Layout className={styles.layout}>
-        {state.isError ? <Alert message="There was an error" type="error" /> : null}
+        {state.isError ? <Alert message={t('error')} type="error" /> : null}
 
         {state.isLoading ? (
           <Spin data-testid="overview-spinner" className={styles.spin} />

@@ -1,3 +1,8 @@
 {
-  "add": "Dodaj"
+  "error": "Przepraszamy, wystąpił błąd.",
+  "accountCreated": "Twoje konto zostało stworzone. Możesz się zalogować",
+  "emailRequired": "Email jest wymagany",
+  "passwordRequired": "Hasło jest wymagane",
+  "login": "Zaloguj",
+  "redirectToRegister": "Nie masz konta? <1>Przejdź do rejestracji.</1>"
 }

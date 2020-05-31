@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Row, Col, Typography, Button, Select } from 'antd'
 import { PlusSquareFilled, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
@@ -37,6 +38,7 @@ export const MainContent = () => {
   const [incomes, setIncomes] = useState(0)
   const [total, setTotal] = useState(0)
   const [timePeriod, setTimePeriod] = useState('month')
+  const { t } = useTranslation()
 
   const recalculateDataFromXDaysAgo = (
     expensesData: Expense[],
@@ -89,7 +91,7 @@ export const MainContent = () => {
         isVisible={isModalOpen}
         onCancel={setIsModalOpen}
         onOk={setIsModalOpen}
-        title="Add new"
+        title={t('addNew')}
       />
 
       <Row className={styles.header} align="middle">
@@ -121,7 +123,7 @@ export const MainContent = () => {
               data-testid="add-new-button"
             >
               <PlusSquareFilled />
-              Add new
+              {t('addNew')}
             </Button>
           </Row>
         </Col>
@@ -130,7 +132,7 @@ export const MainContent = () => {
       <Row className={styles.stats}>
         <Col xs={12} lg={6}>
           <Title className={styles.stats__title} level={3}>
-            Expenses
+            {t('expenses')}
           </Title>
           <Title className={styles.stats__title} level={4} data-testid="expenses-val">
             - {expenses}
@@ -138,7 +140,7 @@ export const MainContent = () => {
         </Col>
         <Col xs={12} lg={6}>
           <Title className={styles.stats__title} level={3}>
-            Incomes
+            {t('incomes')}
           </Title>
           <Title className={styles.stats__title} level={4} data-testid="incomes-val">
             {incomes}
@@ -146,7 +148,7 @@ export const MainContent = () => {
         </Col>
         <Col xs={12} lg={6}>
           <Title className={styles.stats__title} level={3}>
-            Total
+            {t('total')}
           </Title>
           <Title className={styles.stats__title} level={4} data-testid="total-val">
             {total}
@@ -154,15 +156,15 @@ export const MainContent = () => {
         </Col>
         {state.chosenMonth === dayjs().month() + 1 && (
           <Col xs={12} lg={6}>
-            <Title level={3}>Display</Title>
+            <Title level={3}>{t('display')}</Title>
             <Select
               defaultValue={timePeriod}
               className={styles.select}
               onChange={(value) => setTimePeriod(value)}
             >
-              <Option value="month">Month</Option>
-              <Option value="two-weeks">Two weeks</Option>
-              <Option value="week">Week</Option>
+              <Option value="month">{t('month')}</Option>
+              <Option value="two-weeks">{t('twoWeeks')}</Option>
+              <Option value="week">{t('week')}</Option>
             </Select>
           </Col>
         )}

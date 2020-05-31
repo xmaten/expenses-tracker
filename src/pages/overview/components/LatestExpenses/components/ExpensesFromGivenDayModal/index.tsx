@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Col, Modal, Row, Typography, Divider } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 import { Expense } from 'api/expenses/expenses.model'
 import { store } from 'store/store'
@@ -22,6 +23,7 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
   onCancel,
 }) => {
   const { state } = useContext(store)
+  const { t } = useTranslation()
 
   return (
     <Modal
@@ -35,7 +37,7 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
         <Row>
           <Col span={24}>
             <Title level={3} className={styles.header__title}>
-              There are no expenses in this day
+              {t('noExpensesForDay')}
             </Title>
           </Col>
         </Row>

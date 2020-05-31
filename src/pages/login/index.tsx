@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Form, Input, Button, Row, Col, Typography, Spin } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
+import { useTranslation, Trans } from 'react-i18next'
 
 import { store } from 'store/store'
 import { loginUser } from 'store/thunks'
@@ -21,6 +22,7 @@ export const Login = () => {
   const [isInitialLogin, setIsInitialLogin] = useState(false)
   const { dispatch, state } = useContext(store)
   const history = useHistory()
+  const { t } = useTranslation()
 
   const onFinish = (values: any) => {
     loginUser(values, dispatch)
@@ -58,14 +60,14 @@ export const Login = () => {
             }
 
             if (state.isError) {
-              return <p>There was an error. Please try again later</p>
+              return <p>{t('error')}</p>
             }
 
             return (
               <>
                 {isInitialLogin && (
                   <Title style={{ textAlign: 'center' }} level={4}>
-                    Your account has been created. You can login now!
+                    {t('accountCreated')}
                   </Title>
                 )}
                 <Form
@@ -77,7 +79,7 @@ export const Login = () => {
                   <Form.Item
                     label="Email"
                     name="email"
-                    rules={[{ required: true, message: 'Email is required' }]}
+                    rules={[{ required: true, message: t('emailRequired') }]}
                   >
                     <Input />
                   </Form.Item>
@@ -85,20 +87,22 @@ export const Login = () => {
                   <Form.Item
                     label="Password"
                     name="password"
-                    rules={[{ required: true, message: 'Password is required' }]}
+                    rules={[{ required: true, message: t('passwordRequired') }]}
                   >
                     <Input.Password />
                   </Form.Item>
 
                   <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                      Submit
+                      {t('login')}
                     </Button>
                   </Form.Item>
                 </Form>
 
                 <p className={styles.link}>
-                  Don't have an account? <Link to="/register">Register here.</Link>
+                  <Trans i18nKey="redirectToRegister">
+                    0<Link to="/register">1</Link>
+                  </Trans>
                 </p>
               </>
             )

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { Line } from 'react-chartjs-2'
+import { useTranslation } from 'react-i18next'
 
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
@@ -16,6 +17,7 @@ export const LinearChart = () => {
     datasets: [],
   })
   const { state } = useContext(store)
+  const { t } = useTranslation()
 
   const parseApiData = (data: Expense[]) => {
     const parsedData = data.map((item) => ({
@@ -41,7 +43,7 @@ export const LinearChart = () => {
       labels,
       datasets: [
         {
-          label: 'Value',
+          label: t('value'),
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',

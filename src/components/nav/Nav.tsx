@@ -1,12 +1,15 @@
 import React from 'react'
 import { Menu, Row, Col, Typography } from 'antd'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { removeFromStorage } from 'utils/localStorage'
 
 const { Title } = Typography
 
 export const Nav = () => {
+  const { t } = useTranslation()
+
   const logout = () => {
     removeFromStorage('access-token')
     window.location.reload()
@@ -23,16 +26,16 @@ export const Nav = () => {
       <Col span={8}>
         <Menu mode="horizontal" theme="dark">
           <Menu.Item>
-            <NavLink to="/">Overview</NavLink>
+            <NavLink to="/">{t('overview')}</NavLink>
           </Menu.Item>
           <Menu.Item>
-            <NavLink to="/calendar">Calendar</NavLink>
+            <NavLink to="/calendar">{t('calendar')}</NavLink>
           </Menu.Item>
           <Menu.Item>
-            <NavLink to="/reports">Reports</NavLink>
+            <NavLink to="/reports">{t('reports')}</NavLink>
           </Menu.Item>
           <Menu.Item>
-            <p onClick={logout}>Logout</p>
+            <p onClick={logout}>{t('logout')}</p>
           </Menu.Item>
         </Menu>
       </Col>

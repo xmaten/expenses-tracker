@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Form, Input, Button, Row, Col, Typography, Spin } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { registerUser } from 'store/thunks'
 import { store } from 'store/store'
@@ -20,6 +21,7 @@ const { Title } = Typography
 export const Register = () => {
   const { dispatch, state } = useContext(store)
   const history = useHistory()
+  const { t } = useTranslation()
 
   const onFinish = (values: any) => {
     registerUser(values, dispatch)
@@ -48,7 +50,7 @@ export const Register = () => {
             }
 
             if (state.isError) {
-              return <p>There was an error. Please try again later</p>
+              return <p>{t('error')}</p>
             }
 
             return (
@@ -62,7 +64,7 @@ export const Register = () => {
                   <Form.Item
                     label="Username"
                     name="username"
-                    rules={[{ required: true, message: 'Username is required' }]}
+                    rules={[{ required: true, message: t('usernameRequired') }]}
                   >
                     <Input />
                   </Form.Item>
@@ -70,7 +72,7 @@ export const Register = () => {
                   <Form.Item
                     label="Email"
                     name="email"
-                    rules={[{ required: true, message: 'Email is required' }]}
+                    rules={[{ required: true, message: 'emailRequired' }]}
                   >
                     <Input />
                   </Form.Item>
@@ -78,20 +80,22 @@ export const Register = () => {
                   <Form.Item
                     label="Password"
                     name="password"
-                    rules={[{ required: true, message: 'Password is required' }]}
+                    rules={[{ required: true, message: 'passwordRequired' }]}
                   >
                     <Input.Password />
                   </Form.Item>
 
                   <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                      Submit
+                      {t('register')}
                     </Button>
                   </Form.Item>
                 </Form>
 
                 <p className={styles.link}>
-                  Already registered? <Link to="/login">Login here.</Link>
+                  <Trans i18nKey="redirectToLogin">
+                    0<Link to="/register">1</Link>
+                  </Trans>
                 </p>
               </>
             )
