@@ -22,14 +22,14 @@ export const Nav = () => {
 
   return (
     <Row align="middle" style={{ height: '100%' }}>
-      <Col span={16}>
+      <Col span={14}>
         <Title level={3} style={{ marginBottom: 0, color: '#fff' }}>
           ExpensesTracker
         </Title>
       </Col>
 
-      <Col span={8}>
-        <Menu mode="horizontal" theme="dark">
+      <Col span={10} style={{ height: '100%' }}>
+        <Menu mode="horizontal" theme="dark" style={{ height: '100%', display: 'flex' }}>
           <Menu.Item>
             <NavLink to="/">{t('overview')}</NavLink>
           </Menu.Item>

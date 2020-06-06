@@ -43,7 +43,7 @@ export const LinearChart = () => {
       labels,
       datasets: [
         {
-          label: t('value'),
+          label: t('expenses'),
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
@@ -65,6 +65,8 @@ export const LinearChart = () => {
         },
       ],
     }
+
+    console.log(dataset)
 
     setChartData(dataset)
   }
