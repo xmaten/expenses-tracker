@@ -7,10 +7,10 @@ import dayjs, { Dayjs } from 'dayjs'
 
 import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
+import { ExpensesActionTypes } from 'store/expenses'
 import { Expense } from 'api/expenses/expenses.model'
 import { disableFutureDates } from 'utils/disableFutureDates'
 import { dateFormats } from 'utils/dateFormats'
-import { ExpensesActionTypes } from 'store/expenses'
 
 import { ExpensesFromGivenDayModal } from './components/ExpensesFromGivenDayModal'
 import styles from './style.module.css'

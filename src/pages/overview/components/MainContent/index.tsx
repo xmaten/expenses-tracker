@@ -5,11 +5,11 @@ import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
 import { store } from 'store/store'
-import { Expense } from 'api/expenses/expenses.model'
-import { Income } from 'api/incomes/incomes.model'
 import { ExpensesActionTypes } from 'store/expenses'
 import { IncomesActionTypes } from 'store/incomes'
 import { SharedActionTypes } from 'store/shared'
+import { Expense } from 'api/expenses/expenses.model'
+import { Income } from 'api/incomes/incomes.model'
 import { getDataForTimePeriod } from 'utils/getDataForTimePeriod'
 import { getCurrentMonthName } from 'utils/getCurrentMonthName'
 

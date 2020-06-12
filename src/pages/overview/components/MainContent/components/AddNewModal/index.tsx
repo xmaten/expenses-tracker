@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
+import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
 import { addExpense } from 'store/expenses'
 import { addIncome } from 'store/incomes'
-import Calendar from 'components/dataInput/Calendar'
 import { disableFutureDates } from 'utils/disableFutureDates'
 
 import styles from './style.module.css'

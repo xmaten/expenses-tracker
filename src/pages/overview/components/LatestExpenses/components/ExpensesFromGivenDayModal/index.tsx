@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { Col, Modal, Row, Typography, Divider } from 'antd'
 import { useTranslation } from 'react-i18next'
 
-import { Expense } from 'api/expenses/expenses.model'
 import { store } from 'store/store'
+import { Expense } from 'api/expenses/expenses.model'
 
 import styles from './style.module.css'
 
