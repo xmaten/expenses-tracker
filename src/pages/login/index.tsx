@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useTranslation, Trans } from 'react-i18next'
 
 import { store } from 'store/store'
-import { loginUser } from 'store/thunks'
+import { loginUser } from 'store/auth'
 
 import styles from './style.module.css'
 

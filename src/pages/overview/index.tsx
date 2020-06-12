@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next'
 
 import { Nav } from 'components/nav/Nav'
 import { store } from 'store/store'
-import { getExpenses, getIncomes } from 'store/thunks'
+import { getExpenses, ExpensesActionTypes } from 'store/expenses'
+import { getIncomes, IncomesActionTypes } from 'store/incomes'
 import { filterDataForChosenMonth } from 'utils/filterDataForChosenMonth'
-import { ActionTypes } from 'store/actionTypes'
 
 import { LatestExpenses } from './components/LatestExpenses'
 import { MainContent } from './components/MainContent'
@@ -26,12 +26,18 @@ export const Overview = () => {
   }, [dispatch, state.chosenMonth])
 
   useEffect(() => {
-    const expensesForChosenMonth = filterDataForChosenMonth(state.expenses, state.chosenMonth)
-    const incomesForChosenMonth = filterDataForChosenMonth(state.incomes, state.chosenMonth)
+    const expensesForChosenMonth = filterDataForChosenMonth(state.expenses.all, state.chosenMonth)
+    const incomesForChosenMonth = filterDataForChosenMonth(state.incomes.all, state.chosenMonth)
 
-    dispatch({ type: ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH, payload: expensesForChosenMonth })
-    dispatch({ type: ActionTypes.SET_INCOMES_FOR_CHOSEN_MONTH, payload: incomesForChosenMonth })
-  }, [state.expenses, state.incomes])
+    dispatch({
+      type: ExpensesActionTypes.SET_EXPENSES_FROM_CHOSEN_MONTH,
+      payload: expensesForChosenMonth,
+    })
+    dispatch({
+      type: IncomesActionTypes.SET_INCOMES_FROM_CHOSEN_MONTH,
+      payload: incomesForChosenMonth,
+    })
+  }, [state.expenses.all, state.incomes.all])
 
   return (
     <Layout>

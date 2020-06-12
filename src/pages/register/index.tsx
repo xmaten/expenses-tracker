@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col, Typography, Spin } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { registerUser } from 'store/thunks'
+import { registerUser } from 'store/auth'
 import { store } from 'store/store'
 
 import styles from './style.module.css'

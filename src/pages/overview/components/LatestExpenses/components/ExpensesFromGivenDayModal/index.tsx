@@ -33,7 +33,7 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
       onCancel={() => onCancel(false)}
       footer={null}
     >
-      {state.expensesFromGivenDay.length === 0 && (
+      {state.expenses.fromGivenDay.length === 0 && (
         <Row>
           <Col span={24}>
             <Title level={3} className={styles.header__title}>
@@ -42,7 +42,7 @@ export const ExpensesFromGivenDayModal: React.FC<Props> = ({
           </Col>
         </Row>
       )}
-      {state.expensesFromGivenDay.map((item: Expense) => (
+      {state.expenses.fromGivenDay.map((item: Expense) => (
         <Row key={item.id} align="bottom">
           <Col span={12}>
             <Title type="secondary" level={4} className={styles.item__category}>

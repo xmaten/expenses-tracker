@@ -5,7 +5,8 @@ import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 
 import { store } from 'store/store'
-import { addExpense, addIncome } from 'store/thunks'
+import { addExpense } from 'store/expenses'
+import { addIncome } from 'store/incomes'
 import Calendar from 'components/dataInput/Calendar'
 import { disableFutureDates } from 'utils/disableFutureDates'
 

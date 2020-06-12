@@ -70,8 +70,8 @@ export const LinearChart = () => {
   }
 
   useEffect(() => {
-    parseApiData(state.expensesFromTimePeriod)
-  }, [state.expensesFromTimePeriod])
+    parseApiData(state.expenses.fromTimePeriod)
+  }, [state.expenses.fromTimePeriod])
 
   return <Line data={chartData} />
 }

@@ -1,10 +1,12 @@
 import React, { createContext, useReducer } from 'react'
+import dayjs from 'dayjs'
 
 import { Expense } from 'api/expenses/expenses.model'
 import { Income } from 'api/incomes/incomes.model'
-
-import { ActionTypes } from './actionTypes'
-import dayjs from 'dayjs'
+import { ExpensesActionTypes } from 'store/expenses'
+import { SharedActionTypes } from 'store/shared'
+import { IncomesActionTypes } from 'store/incomes'
+import { AuthActionTypes } from 'store/auth'
 
 type Action = {
   payload: any
@@ -12,13 +14,17 @@ type Action = {
 }
 
 type State = {
-  expenses: Expense[]
-  expensesFromTimePeriod: Expense[]
-  expensesFromGivenDay: Expense[]
-  expensesForChosenMonth: Expense[]
-  incomes: Income[]
-  incomesFromTimePeriod: Income[]
-  incomesForChosenMonth: Income[]
+  expenses: {
+    all: Expense[]
+    fromTimePeriod: Expense[]
+    fromGivenDay: Expense[]
+    fromChosenMonth: Expense[]
+  }
+  incomes: {
+    all: Income[]
+    fromTimePeriod: Income[]
+    fromChosenMonth: Income[]
+  }
   isLoading: boolean
   isError: boolean
   isSuccess: boolean
@@ -26,13 +32,17 @@ type State = {
 }
 
 const initialState = {
-  expenses: [],
-  expensesFromTimePeriod: [],
-  incomes: [],
-  incomesForChosenMonth: [],
-  incomesFromTimePeriod: [],
-  expensesFromGivenDay: [],
-  expensesForChosenMonth: [],
+  expenses: {
+    all: [],
+    fromTimePeriod: [],
+    fromGivenDay: [],
+    fromChosenMonth: [],
+  },
+  incomes: {
+    all: [],
+    fromTimePeriod: [],
+    fromChosenMonth: [],
+  },
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -51,111 +61,132 @@ const { Provider } = store
 const StateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer((state: State, action: Action) => {
     switch (action.type) {
-      case ActionTypes.GET_DATA_START:
+      case SharedActionTypes.GET_DATA_START:
         return {
           ...state,
           isLoading: true,
         }
-      case ActionTypes.GET_DATA_ERROR:
+      case SharedActionTypes.GET_DATA_ERROR:
         return {
           ...state,
           isLoading: false,
           isError: true,
         }
-      case ActionTypes.GET_EXPENSES:
+      case ExpensesActionTypes.GET_EXPENSES:
         return {
           ...state,
           isLoading: false,
           isError: false,
-          expenses: action.payload,
+          expenses: {
+            ...state.expenses,
+            all: action.payload,
+          },
         }
-      case ActionTypes.SET_EXPENSES_FROM_TIME_PERIOD:
+      case ExpensesActionTypes.SET_EXPENSES_FROM_TIME_PERIOD:
         return {
           ...state,
-          expensesFromTimePeriod: action.payload,
+          expenses: {
+            ...state.expenses,
+            fromTimePeriod: action.payload,
+          },
         }
-      case ActionTypes.GET_INCOMES:
+      case ExpensesActionTypes.SET_EXPENSES_FROM_GIVEN_DAY:
+        return {
+          ...state,
+          expenses: {
+            ...state.expenses,
+            fromGivenDay: action.payload,
+          },
+        }
+      case ExpensesActionTypes.SET_EXPENSES_FROM_CHOSEN_MONTH:
+        return {
+          ...state,
+          expenses: {
+            ...state.expenses,
+            fromChosenMonth: action.payload,
+          },
+        }
+      case IncomesActionTypes.GET_INCOMES:
         return {
           ...state,
           isLoading: false,
           isError: false,
-          incomes: action.payload,
+          incomes: {
+            ...state.incomes,
+            all: action.payload,
+          },
         }
-      case ActionTypes.SET_INCOMES_FROM_TIME_PERIOD:
+      case IncomesActionTypes.SET_INCOMES_FROM_TIME_PERIOD:
         return {
           ...state,
-          incomesFromTimePeriod: action.payload,
+          incomes: {
+            ...state.incomes,
+            fromTimePeriod: action.payload,
+          },
         }
-      case ActionTypes.UPDATE_DATA_START:
+      case IncomesActionTypes.SET_INCOMES_FROM_CHOSEN_MONTH:
+        return {
+          ...state,
+          incomes: {
+            ...state.incomes,
+            fromChosenMonth: action.payload,
+          },
+        }
+      case SharedActionTypes.UPDATE_DATA_START:
         return {
           ...state,
           isLoading: true,
           isError: false,
           isSuccess: false,
         }
-      case ActionTypes.UPDATE_DATA_SUCCESS:
+      case SharedActionTypes.UPDATE_DATA_SUCCESS:
         return {
           ...state,
           isLoading: false,
           isError: false,
           isSuccess: true,
         }
-      case ActionTypes.UPDATE_DATA_FAIL:
+      case SharedActionTypes.UPDATE_DATA_FAIL:
         return {
           ...state,
           isLoading: false,
           isError: true,
           isSuccess: false,
         }
-      case ActionTypes.SET_EXPENSES_FROM_GIVEN_DAY:
-        return {
-          ...state,
-          expensesFromGivenDay: action.payload,
-        }
-      case ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH:
-        return {
-          ...state,
-          expensesForChosenMonth: action.payload,
-        }
-      case ActionTypes.SET_INCOMES_FOR_CHOSEN_MONTH:
-        return {
-          ...state,
-          incomesForChosenMonth: action.payload,
-        }
-      case ActionTypes.SET_CHOSEN_MONTH:
+      case SharedActionTypes.SET_CHOSEN_MONTH:
         return {
           ...state,
           chosenMonth: action.payload,
         }
-      case ActionTypes.REGISTER_START:
+      case AuthActionTypes.REGISTER_START:
         return {
           ...state,
           isLoading: true,
         }
-      case ActionTypes.REGISTER_FAIL:
+      case AuthActionTypes.REGISTER_FAIL:
         return {
           ...state,
           isLoading: false,
           isError: true,
         }
-      case ActionTypes.REGISTER_SUCCESS:
+      case AuthActionTypes.REGISTER_SUCCESS:
         return {
           ...state,
           isLoading: false,
           isSuccess: true,
         }
-      case ActionTypes.LOGIN_START:
+      case AuthActionTypes.LOGIN_START:
         return {
           ...state,
           isLoading: true,
         }
-      case ActionTypes.LOGIN_FAIL:
+      case AuthActionTypes.LOGIN_FAIL:
         return {
           ...state,
           isLoading: false,
           isError: true,
         }
-      case ActionTypes.LOGIN_SUCCESS:
+      case AuthActionTypes.LOGIN_SUCCESS:
         return {
           ...state,
           isLoading: false,

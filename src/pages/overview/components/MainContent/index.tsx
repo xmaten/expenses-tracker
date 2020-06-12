@@ -7,8 +7,10 @@ import { useTranslation } from 'react-i18next'
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
 import { Income } from 'api/incomes/incomes.model'
+import { ExpensesActionTypes } from 'store/expenses'
+import { IncomesActionTypes } from 'store/incomes'
+import { SharedActionTypes } from 'store/shared'
 import { getDataForTimePeriod } from 'utils/getDataForTimePeriod'
-import { ActionTypes } from 'store/actionTypes'
 import { getCurrentMonthName } from 'utils/getCurrentMonthName'
 
 import { LinearChart } from './components/LinearChart'
@@ -55,19 +57,25 @@ export const MainContent = () => {
     setIncomes(inc)
     setTotal(tot)
 
-    dispatch({ type: ActionTypes.SET_EXPENSES_FROM_TIME_PERIOD, payload: expensesFromTimePeriod })
-    dispatch({ type: ActionTypes.SET_INCOMES_FROM_TIME_PERIOD, payload: incomesFromTimePeriod })
+    dispatch({
+      type: ExpensesActionTypes.SET_EXPENSES_FROM_TIME_PERIOD,
+      payload: expensesFromTimePeriod,
+    })
+    dispatch({
+      type: IncomesActionTypes.SET_INCOMES_FROM_TIME_PERIOD,
+      payload: incomesFromTimePeriod,
+    })
   }
 
   useEffect(() => {
-    recalculateDataFromXDaysAgo(state.expensesForChosenMonth, state.incomesForChosenMonth, null)
-  }, [state.expensesForChosenMonth, state.incomesForChosenMonth])
+    recalculateDataFromXDaysAgo(state.expenses.fromChosenMonth, state.incomes.fromChosenMonth, null)
+  }, [state.expenses.fromChosenMonth, state.incomes.fromChosenMonth])
 
   useEffect(() => {
     if (timePeriod === 'month' || timePeriod === 'two-weeks' || timePeriod === 'week') {
       recalculateDataFromXDaysAgo(
-        state.expensesForChosenMonth,
-        state.incomesForChosenMonth,
+        state.expenses.fromChosenMonth,
+        state.incomes.fromChosenMonth,
         timePeriod,
       )
     }
@@ -82,7 +90,7 @@ export const MainContent = () => {
       nextMonth = 12
     }
 
-    dispatch({ type: ActionTypes.SET_CHOSEN_MONTH, payload: nextMonth })
+    dispatch({ type: SharedActionTypes.SET_CHOSEN_MONTH, payload: nextMonth })
   }
 
   return (

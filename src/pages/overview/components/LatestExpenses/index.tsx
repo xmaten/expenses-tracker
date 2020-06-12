@@ -3,14 +3,14 @@ import { Row, Col, Typography, Avatar } from 'antd'
 import { useTranslation } from 'react-i18next'
 import plPL from 'antd/es/date-picker/locale/pl_PL'
 import enGB from 'antd/es/date-picker/locale/en_GB'
+import dayjs, { Dayjs } from 'dayjs'
 
 import Calendar from 'components/dataInput/Calendar'
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
 import { disableFutureDates } from 'utils/disableFutureDates'
-import dayjs, { Dayjs } from 'dayjs'
-import { ActionTypes } from 'store/actionTypes'
 import { dateFormats } from 'utils/dateFormats'
+import { ExpensesActionTypes } from 'store/expenses'
 
 import { ExpensesFromGivenDayModal } from './components/ExpensesFromGivenDayModal'
 import styles from './style.module.css'
@@ -33,11 +33,11 @@ export const LatestExpenses = () => {
   }
 
   useEffect(() => {
-    const sameDayExpenses = state.expenses.filter((item: Expense) =>
+    const sameDayExpenses = state.expenses.all.filter((item: Expense) =>
       dayjs(item.date).isSame(selectedDate, 'day'),
     )
 
-    dispatch({ type: ActionTypes.SET_EXPENSES_FROM_GIVEN_DAY, payload: sameDayExpenses })
+    dispatch({ type: ExpensesActionTypes.SET_EXPENSES_FROM_GIVEN_DAY, payload: sameDayExpenses })
   }, [selectedDate])
 
   return (
@@ -53,7 +53,7 @@ export const LatestExpenses = () => {
           <Title level={2}>{t('latestExpenses')}</Title>
         </Typography>
 
-        {getLatestExpenses(state.expenses).map((item) => (
+        {getLatestExpenses(state.expenses.all).map((item) => (
           <Row className={styles.expenseItem} key={item.id}>
             <Col span={6}>
               <Avatar shape="square" size={64} />
