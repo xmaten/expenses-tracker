@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { store } from 'store/store'
 import { Expense } from 'api/expenses/expenses.model'
 import { Income } from 'api/incomes/incomes.model'
-import { getDataFromXDaysAgo } from 'utils/getDataFromXDaysAgo'
+import { getDataForTimePeriod } from 'utils/getDataForTimePeriod'
 import { ActionTypes } from 'store/actionTypes'
 import { getCurrentMonthName } from 'utils/getCurrentMonthName'
 
@@ -45,18 +45,18 @@ export const MainContent = () => {
     incomesData: Income[],
     timePeriod: 'month' | 'week' | 'two-weeks' | null,
   ) => {
-    const expensesFromXDaysAgo = getDataFromXDaysAgo(expensesData, timePeriod)
-    const incomesFromXDaysAgo = getDataFromXDaysAgo(incomesData, timePeriod)
+    const expensesFromTimePeriod = getDataForTimePeriod(expensesData, timePeriod)
+    const incomesFromTimePeriod = getDataForTimePeriod(incomesData, timePeriod)
 
-    const exp = calculateExpenses(expensesFromXDaysAgo)
-    const inc = calculateIncomes(incomesFromXDaysAgo)
+    const exp = calculateExpenses(expensesFromTimePeriod)
+    const inc = calculateIncomes(incomesFromTimePeriod)
     const tot = calculateTotal(exp, inc)
     setExpenses(exp)
     setIncomes(inc)
     setTotal(tot)
 
-    dispatch({ type: ActionTypes.SET_EXPENSES_FROM_X_DAYS_AGO, payload: expensesFromXDaysAgo })
-    dispatch({ type: ActionTypes.SET_INCOMES_FROM_X_DAYS_AGO, payload: incomesFromXDaysAgo })
+    dispatch({ type: ActionTypes.SET_EXPENSES_FROM_TIME_PERIOD, payload: expensesFromTimePeriod })
+    dispatch({ type: ActionTypes.SET_INCOMES_FROM_TIME_PERIOD, payload: incomesFromTimePeriod })
   }
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { fitlerDataForChosenMonth } from './fitlerDataForChosenMonth'
+import { filterDataForChosenMonth } from 'utils/filterDataForChosenMonth'
 
 const mockData = [
   {
@@ -21,6 +21,6 @@ const mockData = [
 describe('Filter data for chosen month', () => {
   test('It should filter to return data only for chosen month', () => {
     const month = 4
-    expect(fitlerDataForChosenMonth(mockData, month).length).toEqual(3)
+    expect(filterDataForChosenMonth(mockData, month).length).toEqual(3)
   })
 })

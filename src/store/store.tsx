@@ -13,12 +13,12 @@ type Action = {
 
 type State = {
   expenses: Expense[]
-  expensesFromXDaysAgo: Expense[]
-  incomes: Income[]
-  incomesForChosenMonth: Income[]
-  incomesFromXDaysAgo: Income[]
+  expensesFromTimePeriod: Expense[]
   expensesFromGivenDay: Expense[]
   expensesForChosenMonth: Expense[]
+  incomes: Income[]
+  incomesFromTimePeriod: Income[]
+  incomesForChosenMonth: Income[]
   isLoading: boolean
   isError: boolean
   isSuccess: boolean
@@ -27,10 +27,10 @@ type State = {
 
 const initialState = {
   expenses: [],
-  expensesFromXDaysAgo: [],
+  expensesFromTimePeriod: [],
   incomes: [],
   incomesForChosenMonth: [],
-  incomesFromXDaysAgo: [],
+  incomesFromTimePeriod: [],
   expensesFromGivenDay: [],
   expensesForChosenMonth: [],
   isLoading: false,
@@ -69,10 +69,10 @@ const StateProvider: React.FC = ({ children }) => {
           isError: false,
           expenses: action.payload,
         }
-      case ActionTypes.SET_EXPENSES_FROM_X_DAYS_AGO:
+      case ActionTypes.SET_EXPENSES_FROM_TIME_PERIOD:
         return {
           ...state,
-          expensesFromXDaysAgo: action.payload,
+          expensesFromTimePeriod: action.payload,
         }
       case ActionTypes.GET_INCOMES:
         return {
@@ -81,10 +81,10 @@ const StateProvider: React.FC = ({ children }) => {
           isError: false,
           incomes: action.payload,
         }
-      case ActionTypes.SET_INCOMES_FROM_X_DAYS_AGO:
+      case ActionTypes.SET_INCOMES_FROM_TIME_PERIOD:
         return {
           ...state,
-          incomesFromXDaysAgo: action.payload,
+          incomesFromTimePeriod: action.payload,
         }
       case ActionTypes.UPDATE_DATA_START:
         return {

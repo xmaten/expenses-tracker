@@ -66,14 +66,12 @@ export const LinearChart = () => {
       ],
     }
 
-    console.log(dataset)
-
     setChartData(dataset)
   }
 
   useEffect(() => {
-    parseApiData(state.expensesFromXDaysAgo)
-  }, [state.expensesFromXDaysAgo])
+    parseApiData(state.expensesFromTimePeriod)
+  }, [state.expensesFromTimePeriod])
 
   return <Line data={chartData} />
 }

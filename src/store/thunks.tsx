@@ -2,7 +2,6 @@ import { Dispatch } from 'react'
 
 import { ExpensesApi } from 'api/expenses/expenses'
 import { IncomesApi } from 'api/incomes/incomes'
-import { mergeDataWithId } from 'utils/mergeDataWithId'
 import { NewExpense } from 'api/expenses/expenses.model'
 import { NewIncome } from 'api/incomes/incomes.model'
 import { AuthApi } from 'api/auth/auth'

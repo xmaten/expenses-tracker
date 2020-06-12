@@ -45,8 +45,8 @@ export const PieChart = () => {
   }
 
   useEffect(() => {
-    parseApiData(state.expensesFromXDaysAgo)
-  }, [state.expensesFromXDaysAgo])
+    parseApiData(state.expensesFromTimePeriod)
+  }, [state.expensesFromTimePeriod])
 
   return <Doughnut data={chartData} />
 }

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { Nav } from 'components/nav/Nav'
 import { store } from 'store/store'
 import { getExpenses, getIncomes } from 'store/thunks'
-import { fitlerDataForChosenMonth } from 'utils/fitlerDataForChosenMonth'
+import { filterDataForChosenMonth } from 'utils/filterDataForChosenMonth'
 import { ActionTypes } from 'store/actionTypes'
 
 import { LatestExpenses } from './components/LatestExpenses'
@@ -26,8 +26,8 @@ export const Overview = () => {
   }, [dispatch, state.chosenMonth])
 
   useEffect(() => {
-    const expensesForChosenMonth = fitlerDataForChosenMonth(state.expenses, state.chosenMonth)
-    const incomesForChosenMonth = fitlerDataForChosenMonth(state.incomes, state.chosenMonth)
+    const expensesForChosenMonth = filterDataForChosenMonth(state.expenses, state.chosenMonth)
+    const incomesForChosenMonth = filterDataForChosenMonth(state.incomes, state.chosenMonth)
 
     dispatch({ type: ActionTypes.SET_EXPENSES_FOR_CHOSEN_MONTH, payload: expensesForChosenMonth })
     dispatch({ type: ActionTypes.SET_INCOMES_FOR_CHOSEN_MONTH, payload: incomesForChosenMonth })
