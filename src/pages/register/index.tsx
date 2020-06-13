@@ -72,7 +72,7 @@ export const Register = () => {
                   <Form.Item
                     label="Email"
                     name="email"
-                    rules={[{ required: true, message: 'emailRequired' }]}
+                    rules={[{ required: true, message: t('emailRequired') }]}
                   >
                     <Input />
                   </Form.Item>
@@ -80,13 +80,13 @@ export const Register = () => {
                   <Form.Item
                     label="Password"
                     name="password"
-                    rules={[{ required: true, message: 'passwordRequired' }]}
+                    rules={[{ required: true, message: t('passwordRequired') }]}
                   >
                     <Input.Password />
                   </Form.Item>
 
                   <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" data-testid="submit-btn">
                       {t('register')}
                     </Button>
                   </Form.Item>

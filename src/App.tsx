@@ -13,8 +13,6 @@ export const App = () => {
   useEffect(() => {
     if (getFromStorage('access-token')) {
       history.push('/overview')
-    } else {
-      history.push('/login')
     }
   }, [])
 

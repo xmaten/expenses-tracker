@@ -1,13 +1,10 @@
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 
-import { Expense } from 'api/expenses/expenses.model'
-import { Income } from 'api/incomes/incomes.model'
-
 dayjs.extend(isBetween)
 
 export const getDataForTimePeriod = (
-  data: Expense[] | Income[],
+  data: any,
   timePeriod: 'month' | 'week' | 'two-weeks' | null,
 ) => {
   if (!timePeriod) {
