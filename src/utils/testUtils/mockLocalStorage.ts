@@ -1,8 +1,14 @@
 export class LocalStorageMock {
   store: any
+  length: number
 
   constructor() {
     this.store = {}
+    this.length = 0
+  }
+
+  key(index: number) {
+    return this.store[index] || null
   }
 
   clear() {

@@ -1,7 +1,6 @@
 import { getCurrentMonthName } from 'utils/getCurrentMonthName'
 import { LocalStorageMock } from 'utils/testUtils/mockLocalStorage'
 
-// @ts-ignore
 global.localStorage = new LocalStorageMock()
 
 describe('Get current month name', () => {
