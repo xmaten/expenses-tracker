@@ -6,10 +6,10 @@ import { NewIncome } from './incomes.model'
 
 const url = '/incomes'
 
-export const getIncomes = (): Promise<AxiosResponse> => {
+export const getIncomes = () => {
   return httpClient.get(url)
 }
 
-export const addIncome = (newIncome: NewIncome): Promise<AxiosResponse> => {
+export const addIncome = (newIncome: NewIncome) => {
   return httpClient.post(url, newIncome)
 }

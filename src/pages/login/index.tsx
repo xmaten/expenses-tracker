@@ -5,6 +5,7 @@ import { useTranslation, Trans } from 'react-i18next'
 
 import { store } from 'store/store'
 import { loginUser } from 'store/auth'
+import { LoginFormData } from 'api/auth/auth.model'
 
 import styles from './style.module.css'
 

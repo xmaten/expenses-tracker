@@ -4,10 +4,10 @@ import httpClient from 'utils/httpClient'
 
 import { RegisterFormaData, LoginFormData } from './auth.model'
 
-export const register = (registerFormData: RegisterFormaData): Promise<AxiosResponse> => {
+export const register = (registerFormData: RegisterFormaData) => {
   return httpClient.post('/users', registerFormData)
 }
 
-export const login = (loginFormData: LoginFormData): Promise<AxiosResponse> => {
+export const login = (loginFormData: LoginFormData) => {
   return httpClient.post('/login', loginFormData)
 }

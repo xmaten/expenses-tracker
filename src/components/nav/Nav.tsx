@@ -34,12 +34,6 @@ export const Nav = () => {
             <NavLink to="/">{t('overview')}</NavLink>
           </Menu.Item>
           <Menu.Item>
-            <NavLink to="/calendar">{t('calendar')}</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="/reports">{t('reports')}</NavLink>
-          </Menu.Item>
-          <Menu.Item>
             <p onClick={logout}>{t('logout')}</p>
           </Menu.Item>
           <Menu.Item onClick={() => onLanguageChange('pl')}>PL</Menu.Item>

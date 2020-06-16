@@ -1,5 +1,5 @@
 import { getCurrentMonthName } from 'utils/getCurrentMonthName'
-import { LocalStorageMock } from 'utils/testUtils/mockLocalStorage'
+import { LocalStorageMock } from '__mocks__/mockLocalStorage'
 
 global.localStorage = new LocalStorageMock()
 
