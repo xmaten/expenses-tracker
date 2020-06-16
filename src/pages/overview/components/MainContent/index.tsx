@@ -21,15 +21,15 @@ import styles from './style.module.css'
 const { Title } = Typography
 const { Option } = Select
 
-export const calculateExpenses = (expensesData: Expense[]) => {
+const calculateExpenses = (expensesData: Expense[]) => {
   return expensesData.reduce((acc, curr) => acc + curr.value, 0)
 }
 
-export const calculateIncomes = (incomesData: Income[]) => {
+const calculateIncomes = (incomesData: Income[]) => {
   return incomesData.reduce((acc, curr) => acc + curr.value, 0)
 }
 
-export const calculateTotal = (totalExpenses: number, totalIncomes: number) => {
+const calculateTotal = (totalExpenses: number, totalIncomes: number) => {
   return totalIncomes - totalExpenses
 }
 

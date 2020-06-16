@@ -6,11 +6,10 @@ import { NewIncome } from './incomes.model'
 
 const url = '/incomes'
 
-export const IncomesApi = {
-  getIncomes(): Promise<AxiosResponse> {
-    return httpClient.get(url)
-  },
-  addIncome(newIncome: NewIncome): Promise<AxiosResponse> {
-    return httpClient.post(url, newIncome)
-  },
+export const getIncomes = (): Promise<AxiosResponse> => {
+  return httpClient.get(url)
+}
+
+export const addIncome = (newIncome: NewIncome): Promise<AxiosResponse> => {
+  return httpClient.post(url, newIncome)
 }

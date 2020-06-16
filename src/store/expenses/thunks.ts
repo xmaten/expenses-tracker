@@ -1,6 +1,6 @@
 import { Dispatch } from 'react'
 
-import { ExpensesApi } from 'api/expenses/expenses'
+import * as ExpensesApi from 'api/expenses/expenses'
 import { NewExpense } from 'api/expenses/expenses.model'
 import { SharedActionTypes } from 'store/shared/actionTypes'
 

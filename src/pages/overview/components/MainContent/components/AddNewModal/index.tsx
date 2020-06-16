@@ -125,7 +125,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
               className={styles.input}
               name="value"
               value={valueVal}
-              onChange={(val) => setValueVal(val)}
+              onChange={(val) => setValueVal(Number(val))}
             />
           </Col>
         </Row>

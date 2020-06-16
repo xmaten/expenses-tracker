@@ -1,7 +1,7 @@
 import { Dispatch } from 'react'
 
 import { LoginFormData, RegisterFormaData } from 'api/auth/auth.model'
-import { AuthApi } from 'api/auth/auth'
+import * as AuthApi from 'api/auth/auth'
 import { saveToStorage } from 'utils/localStorage'
 import { AuthActionTypes } from './actionTypes'
 
