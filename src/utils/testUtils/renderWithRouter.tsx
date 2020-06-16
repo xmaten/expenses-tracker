@@ -1,26 +1,12 @@
-import React from 'react'
-import { createMemoryHistory } from 'history'
+import React, { ReactElement } from 'react'
 import { Router } from 'react-router-dom'
-import { render } from '@testing-library/react'
+import { render, RenderOptions } from '@testing-library/react'
 
-interface RenderWithRouterArgs {
-  route: string
-  history: any
-}
+import { history } from 'utils/history'
 
-export function renderWithRouter(
-  ui: any,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {} as RenderWithRouterArgs,
-) {
-  const Wrapper = ({ children }: any) => <Router history={history}>{children}</Router>
-
-  if (ui) {
-    return {
-      ...render(ui, { wrapper: Wrapper }),
-      history,
-    }
+export const renderWithRouter = (ui: ReactElement, renderOptions?: RenderOptions) => {
+  const Wrapper: React.FC = ({ children }) => {
+    return <Router history={history}>{children}</Router>
   }
+  return render(ui, { wrapper: Wrapper, ...renderOptions })
 }

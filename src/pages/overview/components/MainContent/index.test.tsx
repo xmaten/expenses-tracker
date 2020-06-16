@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { waitFor } from '@testing-library/react'
-
 import { renderWithRouter } from 'utils/testUtils/renderWithRouter'
 
 import { MainContent } from './index'
@@ -33,17 +31,5 @@ describe('Main content component', () => {
     expect(expenses.textContent).toEqual(`- 0`)
     expect(incomes.textContent).toEqual('0')
     expect(total.textContent).toEqual('0')
-  })
-
-  test('It should display proper expenses, incomes and total values after fetch', async () => {
-    const { getByTestId } = renderWithRouter(<MainContent />)
-
-    const expenses = getByTestId('expenses-val')
-    const incomes = getByTestId('incomes-val')
-    const total = getByTestId('total-val')
-
-    await waitFor(() => expect(expenses.textContent).toEqual(`- 700`))
-    await waitFor(() => expect(incomes.textContent).toEqual('300'))
-    await waitFor(() => expect(total.textContent).toEqual(`- 400`))
   })
 })

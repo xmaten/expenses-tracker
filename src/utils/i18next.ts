@@ -6,22 +6,26 @@ import translationPL from 'locales/pl.json'
 
 i18n.languages = ['pl', 'en']
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translations: translationEN,
-    },
-    pl: {
-      translations: translationPL,
-    },
+const resources = {
+  en: {
+    translations: translationEN,
   },
-  lng: localStorage.getItem('language'),
+  pl: {
+    translations: translationPL,
+  },
+}
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: localStorage.getItem('language') || 'en',
   fallbackLng: 'en',
-  ns: ['translations'],
   defaultNS: 'translations',
-  keySeparator: false,
   interpolation: {
     escapeValue: false,
+  },
+  react: {
+    transSupportBasicHtmlNodes: true,
+    transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p'],
   },
 })
 
