@@ -14,6 +14,10 @@ export const App = () => {
     if (getFromStorage('access-token')) {
       history.push('/overview')
     }
+
+    if (!getFromStorage('access-token') && history.location.pathname === '/') {
+      history.push('/login')
+    }
   }, [])
 
   return (
