@@ -10,15 +10,15 @@ import { getFromStorage } from 'utils/localStorage'
 import { history } from 'utils/history'
 
 export const App = () => {
-  // useEffect(() => {
-  //   if (getFromStorage('access-token')) {
-  //     history.push('/overview')
-  //   }
-  //
-  //   if (!getFromStorage('access-token') && history.location.pathname === '/') {
-  //     history.push('/login')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (getFromStorage('access-token')) {
+      history.push('/overview')
+    }
+
+    if (!getFromStorage('access-token') && history.location.pathname === '/') {
+      history.push('/login')
+    }
+  }, [])
 
   return (
     <StateProvider>

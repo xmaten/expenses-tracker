@@ -1,5 +1,5 @@
-describe('login', () => {
-  it('logins to account', () => {
+describe('register', () => {
+  it('create new account', () => {
     const randomNum = Math.floor(Math.random() * 1000)
 
     cy.visit('http://localhost:3000/register')
