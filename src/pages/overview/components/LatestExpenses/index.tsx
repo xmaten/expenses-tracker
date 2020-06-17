@@ -11,6 +11,10 @@ import { ExpensesActionTypes } from 'store/expenses'
 import { Expense } from 'api/expenses/expenses.model'
 import { disableFutureDates } from 'utils/disableFutureDates'
 import { dateFormats } from 'utils/dateFormats'
+import IconBank from 'assets/icons/bank.svg'
+import IconElectronics from 'assets/icons/electronics.svg'
+import IconFood from 'assets/icons/food.svg'
+import IconRent from 'assets/icons/rent.svg'
 
 import { ExpensesFromGivenDayModal } from './components/ExpensesFromGivenDayModal'
 import styles from './style.module.css'
@@ -30,6 +34,21 @@ export const LatestExpenses = () => {
   const onDateSelect = (value: dayjs.Dayjs) => {
     setSelectedDate(value)
     setIsExpensesModalVisible(true)
+  }
+
+  const getIconBasedOnCategory = (category: string) => {
+    switch (category) {
+      case 'food':
+        return IconFood
+      case 'entertainment':
+        return IconElectronics
+      case 'credit':
+        return IconBank
+      case 'rent':
+        return IconRent
+      default:
+        return ''
+    }
   }
 
   useEffect(() => {
@@ -56,7 +75,7 @@ export const LatestExpenses = () => {
         {getLatestExpenses(state.expenses.all).map((item) => (
           <Row className={styles.expenseItem} key={item.id}>
             <Col span={6}>
-              <Avatar shape="square" size={64} />
+              <Avatar shape="square" size={64} src={getIconBasedOnCategory(item.category)} />
             </Col>
             <Col span={12}>
               <Row>

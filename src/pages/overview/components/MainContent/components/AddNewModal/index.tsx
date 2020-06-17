@@ -104,7 +104,7 @@ export const AddNewModal: React.FC<Props> = ({ title, isVisible, onOk, onCancel 
               <Option value="credit">{t('credit')}</Option>
               <Option value="food">{t('food')}</Option>
               <Option value="entertainment">{t('entertainment')}</Option>
-              <Option value="other">{t('other')}</Option>
+              <Option value="rent">{t('rent')}</Option>
             </Select>
           </Col>
         </Row>
