@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Form, Input, Button, Row, Col, Typography, Spin } from 'antd'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useTranslation, Trans } from 'react-i18next'
 
 import { store } from 'store/store'
 import { loginUser } from 'store/auth'
-import { LoginFormData } from 'api/auth/auth.model'
 
 import styles from './style.module.css'
 
@@ -22,7 +21,6 @@ const { Title } = Typography
 export const Login = () => {
   const [isInitialLogin, setIsInitialLogin] = useState(false)
   const { dispatch, state } = useContext(store)
-  const history = useHistory()
   const { t } = useTranslation()
 
   const onFinish = (values: any) => {
@@ -37,12 +35,6 @@ export const Login = () => {
       setIsInitialLogin(true)
     }
   }, [])
-
-  useEffect(() => {
-    if (state.isSuccess) {
-      history.push('/overview')
-    }
-  }, [state.isSuccess])
 
   return (
     <>

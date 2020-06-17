@@ -3,6 +3,8 @@ import { Dispatch } from 'react'
 import { LoginFormData, RegisterFormaData } from 'api/auth/auth.model'
 import * as AuthApi from 'api/auth/auth'
 import { saveToStorage } from 'utils/localStorage'
+import { history } from 'utils/history'
+
 import { AuthActionTypes } from './actionTypes'
 
 export const registerUser = async (
@@ -15,6 +17,7 @@ export const registerUser = async (
     await AuthApi.register(registerFormData)
 
     dispatch({ type: AuthActionTypes.REGISTER_SUCCESS })
+    history.push('/login?initialLogin=true')
   } catch {
     dispatch({ type: AuthActionTypes.REGISTER_FAIL })
   }
@@ -30,6 +33,7 @@ export const loginUser = async (loginFormData: LoginFormData, dispatch: Dispatch
 
     saveToStorage('access-token', response.token)
     dispatch({ type: AuthActionTypes.LOGIN_SUCCESS })
+    history.push('/overview')
   } catch (e) {
     dispatch({ type: AuthActionTypes.LOGIN_FAIL })
   }

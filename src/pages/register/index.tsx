@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Form, Input, Button, Row, Col, Typography, Spin } from 'antd'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { registerUser } from 'store/auth'
@@ -20,18 +20,11 @@ const { Title } = Typography
 
 export const Register = () => {
   const { dispatch, state } = useContext(store)
-  const history = useHistory()
   const { t } = useTranslation()
 
   const onFinish = (values: any) => {
     registerUser(values, dispatch)
   }
-
-  useEffect(() => {
-    if (state.isSuccess) {
-      history.push('/login?initialLogin=true')
-    }
-  }, [state.isSuccess])
 
   return (
     <>
