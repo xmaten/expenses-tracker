@@ -6,6 +6,7 @@ describe('register', () => {
     cy.get('input#basic_username').type(`tester${randomNum}`)
     cy.get('input#basic_email').type(`tester${randomNum}@test.com`)
     cy.get('input#basic_password').type('tester123')
+    cy.get('input#basic_repeatPassword').type('tester123')
     cy.contains('button', 'Register').click()
     cy.url().should('include', '/login')
   })
