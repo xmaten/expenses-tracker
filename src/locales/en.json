@@ -41,5 +41,6 @@
   "wrongCredentials": "Wrong credentials",
   "invalidEmail": "Invalid email",
   "takenUsername": "Username already taken",
-  "takenEmail": "Email already taken"
+  "takenEmail": "Email already taken",
+  "passwordsMustBeTheSame": "Passwords must be the same"
 }

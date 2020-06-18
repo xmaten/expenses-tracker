@@ -75,6 +75,29 @@ export const Register = () => {
                     <Input.Password />
                   </Form.Item>
 
+                  <Form.Item
+                    name="repeatPassword"
+                    label="Repeat password"
+                    dependencies={['password']}
+                    hasFeedback
+                    rules={[
+                      {
+                        required: true,
+                        message: t('passwordRequired'),
+                      },
+                      ({ getFieldValue }) => ({
+                        validator(rule, value) {
+                          if (!value || getFieldValue('password') === value) {
+                            return Promise.resolve()
+                          }
+                          return Promise.reject(t('passwordsMustBeTheSame'))
+                        },
+                      }),
+                    ]}
+                  >
+                    <Input.Password />
+                  </Form.Item>
+
                   <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit" data-testid="submit-btn">
                       {t('register')}

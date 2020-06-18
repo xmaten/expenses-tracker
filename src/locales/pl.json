@@ -39,5 +39,6 @@
   "wrongCredentials": "Niepoprawne dane",
   "invalidEmail": "Niepoprawny email",
   "takenUsername": "Nazwa użytkownika jest już zajęta",
-  "takenEmail": "Email jest już zajęty"
+  "takenEmail": "Email jest już zajęty",
+  "passwordsMustBeTheSame": "Hasła muszą być takie same"
 }
