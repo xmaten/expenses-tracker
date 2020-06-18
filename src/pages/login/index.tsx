@@ -52,10 +52,6 @@ export const Login = () => {
               )
             }
 
-            if (state.isError) {
-              return <p>{t('error')}</p>
-            }
-
             return (
               <>
                 {isInitialLogin && (
@@ -63,6 +59,7 @@ export const Login = () => {
                     {t('accountCreated')}
                   </Title>
                 )}
+                {state.errorMessage && <p>{t(state.errorMessage)}</p>}
                 <Form
                   {...layout}
                   name="basic"

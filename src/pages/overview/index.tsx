@@ -44,9 +44,8 @@ export const Overview = () => {
       <Header>
         <Nav />
       </Header>
+      {state.isError ? <Alert message={t('error')} type="error" /> : null}
       <Layout className={styles.layout}>
-        {state.isError ? <Alert message={t('error')} type="error" /> : null}
-
         {state.isLoading ? (
           <Spin data-testid="overview-spinner" className={styles.spin} />
         ) : (

@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios'
-
 import httpClient from 'utils/httpClient'
 
 import { NewExpense } from './expenses.model'

@@ -35,5 +35,9 @@
   "formNotValid": "Formularz jest wypełniony niepoprawnie",
   "latestExpenses": "Ostatnie wydatki",
   "expensesFrom": "Wydatki z",
-  "noExpensesForDay": "Nie ma wydatków w wybranym dniu"
+  "noExpensesForDay": "Nie ma wydatków w wybranym dniu",
+  "wrongCredentials": "Niepoprawne dane",
+  "invalidEmail": "Niepoprawny email",
+  "takenUsername": "Nazwa użytkownika jest już zajęta",
+  "takenEmail": "Email jest już zajęty"
 }

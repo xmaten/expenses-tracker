@@ -29,6 +29,7 @@ type State = {
   isError: boolean
   isSuccess: boolean
   chosenMonth: number
+  errorMessage: string | null
 }
 
 const initialState = {
@@ -47,6 +48,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   chosenMonth: dayjs().month() + 1,
+  errorMessage: null,
 }
 
 const store = createContext<{
@@ -162,12 +164,14 @@ const StateProvider: React.FC = ({ children }) => {
         return {
           ...state,
           isLoading: true,
+          errorMessage: null,
         }
       case AuthActionTypes.REGISTER_FAIL:
         return {
           ...state,
           isLoading: false,
           isError: true,
+          errorMessage: action.payload,
         }
       case AuthActionTypes.REGISTER_SUCCESS:
         return {
@@ -179,12 +183,14 @@ const StateProvider: React.FC = ({ children }) => {
         return {
           ...state,
           isLoading: true,
+          errorMessage: null,
         }
       case AuthActionTypes.LOGIN_FAIL:
         return {
           ...state,
           isLoading: false,
           isError: true,
+          errorMessage: action.payload,
         }
       case AuthActionTypes.LOGIN_SUCCESS:
         return {

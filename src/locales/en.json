@@ -37,5 +37,9 @@
   "formNotValid": "Form is not valid",
   "latestExpenses": "Latest expenses",
   "expensesFrom": "Expenses from",
-  "noExpensesForDay": "There are no expenses for given day"
+  "noExpensesForDay": "There are no expenses for given day",
+  "wrongCredentials": "Wrong credentials",
+  "invalidEmail": "Invalid email",
+  "takenUsername": "Username already taken",
+  "takenEmail": "Email already taken"
 }

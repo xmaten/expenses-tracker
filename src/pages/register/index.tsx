@@ -42,12 +42,9 @@ export const Register = () => {
               )
             }
 
-            if (state.isError) {
-              return <p>{t('error')}</p>
-            }
-
             return (
               <>
+                {state.errorMessage && <p>{t(state.errorMessage)}</p>}
                 <Form
                   {...layout}
                   name="basic"

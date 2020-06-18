@@ -18,8 +18,18 @@ export const registerUser = async (
 
     dispatch({ type: AuthActionTypes.REGISTER_SUCCESS })
     history.push('/login?initialLogin=true')
-  } catch {
-    dispatch({ type: AuthActionTypes.REGISTER_FAIL })
+  } catch (e) {
+    let errorMessage = null
+    console.log(e)
+    if (e.data?.error?.Taken_username) {
+      errorMessage = 'takenUsername'
+    }
+
+    if (e.data?.error?.Taken_email) {
+      errorMessage = 'takenEmail'
+    }
+
+    dispatch({ type: AuthActionTypes.REGISTER_FAIL, payload: errorMessage })
   }
 }
 
@@ -35,6 +45,16 @@ export const loginUser = async (loginFormData: LoginFormData, dispatch: Dispatch
     dispatch({ type: AuthActionTypes.LOGIN_SUCCESS })
     history.push('/overview')
   } catch (e) {
-    dispatch({ type: AuthActionTypes.LOGIN_FAIL })
+    let errorMessage = null
+
+    if (e.data?.error?.Incorrect_password) {
+      errorMessage = 'wrongCredentials'
+    }
+
+    if (e.data?.error?.Invalid_email) {
+      errorMessage = 'invalidEmail'
+    }
+
+    dispatch({ type: AuthActionTypes.LOGIN_FAIL, payload: errorMessage })
   }
 }
